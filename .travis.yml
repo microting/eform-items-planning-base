@@ -1,0 +1,20 @@
+dist: xenial
+branches:
+  only:
+    - master
+language: csharp
+solution: eform-ItemsPlanningBase/Microting.ItemsPlanningBase.sln
+mono: none
+dotnet: 2.2
+services:
+- mysql
+script:
+  - dotnet restore
+  - dotnet build Microting.ItemsPlanningBase.sln
+  - dotnet test -v n Microting.ItemsPlanningBase.Tests/Microting.ItemsPlanningBase.Tests.csproj
+  - export GITVERSION=`git describe --abbrev=0 --tags | cut -d "v" -f 2`
+  - echo $GITVERSION
+  - dotnet pack Microting.ItemsPlanningBase.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
+  - export FILENAME="/home/travis/build/microting/eform-ItemsPlanningBase/Microting.ItemsPlanningBase/artifacts/Microting.ItemsPlanningBase.${GITVERSION}.nupkg"
+  - echo $FILENAME
+  - dotnet nuget push $FILENAME -k $NUGET_SECRET_KEY -s https://api.nuget.org/v3/index.json || true
