@@ -46,8 +46,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<ItemVersion> ItemVersions { get; set;}
         public DbSet<PlanningCaseSite> PlanningCaseSites { get; set; }
         public DbSet<PlanningCaseSiteVersion> PlanningCaseSiteVersions { get; set; }
+        public DbSet<PlanningSite> PlanningSites { get; set; }
+        public DbSet<PlanningSiteVersion> PlanningSiteVersions { get; set; }
 
-        
         // common tables
         public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
         public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }

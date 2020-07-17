@@ -3,14 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200717124153_AddPlanningSites")]
+    partial class AddPlanningSites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
@@ -855,7 +858,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", autoIdGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -893,7 +896,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", autoIdGenStrategyValue);
 
                     b.Property<string>("ClaimName");
 
