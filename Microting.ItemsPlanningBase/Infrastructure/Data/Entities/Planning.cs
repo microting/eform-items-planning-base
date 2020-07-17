@@ -21,15 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
-using System;
-using System.Threading.Tasks;
-using Microting.ItemsPlanningBase.Infrastructure.Enums;
-using Microsoft.EntityFrameworkCore;
-using Microting.eForm.Infrastructure.Constants;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System.Collections.Generic;
+    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+    using System;
+    using System.Threading.Tasks;
+    using Enums;
+    using Microsoft.EntityFrameworkCore;
+    using Microting.eForm.Infrastructure.Constants;
+
     public class Planning : BaseEntity
     {
         public string Name { get; set; }
@@ -117,7 +119,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int? SdkFieldId10 { get; set; }
 
         public virtual Item Item { get; set; } = new Item();
-        
+
+        public virtual List<PlanningSite> PlanningSites { get; set; }
+            = new List<PlanningSite>();
+
         public async Task Create(ItemsPlanningPnDbContext dbContext)
         {
             WorkflowState = Constants.WorkflowStates.Created;
