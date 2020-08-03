@@ -60,11 +60,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<PluginGroupPermissionVersion>()
-                .HasOne(x => x.PluginGroupPermission)
-                .WithMany()
-                .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<PluginGroupPermissionVersion>()
+            //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)
+            //    .WithMany()
+            //    .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

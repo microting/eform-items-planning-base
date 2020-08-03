@@ -33,7 +33,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
         public ItemsPlanningPnDbContext CreateDbContext(string[] args)
         {
             //args = new[]
-            //    {"host=localhost;Database=items-pl;Uid=root;Pwd=111111;port=3306;Convert Zero Datetime = true;SslMode=none;PersistSecurityInfo=true;"};
+            //    {"host=localhost;Database=items-pl-pl;Uid=root;Pwd=111111;port=3306;Convert Zero Datetime = true;SslMode=none;PersistSecurityInfo=true;"};
             //args = new[]
             //    {"Data Source=.\\SQLEXPRESS;Database=items-pl;Integrated Security=True"};
             var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
