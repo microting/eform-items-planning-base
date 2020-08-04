@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 using Microsoft.EntityFrameworkCore;
@@ -41,9 +40,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string BuildYear { get; set; }
         public string Type { get; set; }
 
-        [ForeignKey("Planning")]
         public int PlanningId { get; set; }
-                    
+        public virtual Planning Planning { get; set; }
+
         public async Task Save(ItemsPlanningPnDbContext dbContext)
         {
             Item item = new Item
