@@ -5,16 +5,17 @@ branches:
 language: csharp
 solution: eform-ItemsPlanningBase/Microting.ItemsPlanningBase.sln
 mono: none
-dotnet: 2.2
-services:
-- mysql
+dotnet: 3.1.101
+addons:
+  chrome: stable
+  mariadb: '10.5'
 script:
-  - dotnet restore
+  - sudo mysql -e 'ALTER USER root@localhost IDENTIFIED VIA mysql_native_password'
   - dotnet build Microting.ItemsPlanningBase.sln
   - dotnet test -v n Microting.ItemsPlanningBase.Tests/Microting.ItemsPlanningBase.Tests.csproj
   - export GITVERSION=`git describe --abbrev=0 --tags | cut -d "v" -f 2`
   - echo $GITVERSION
   - dotnet pack Microting.ItemsPlanningBase.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
-  - export FILENAME="/home/travis/build/microting/eform-ItemsPlanningBase/Microting.ItemsPlanningBase/artifacts/Microting.ItemsPlanningBase.${GITVERSION}.nupkg"
+  - export FILENAME="/home/travis/build/microting/eform-items-planning-base/artifacts/Microting.ItemsPlanningBase.${GITVERSION}.nupkg"
   - echo $FILENAME
   - dotnet nuget push $FILENAME -k $NUGET_SECRET_KEY -s https://api.nuget.org/v3/index.json || true
