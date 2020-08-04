@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 using Microsoft.EntityFrameworkCore;
@@ -51,8 +50,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public string Location { get; set; }
 
-        [ForeignKey("Item")]
         public int ItemId { get; set; }
+        public virtual Item Item { get; set; }
         
         public string SdkFieldValue1 { get; set; }
         
