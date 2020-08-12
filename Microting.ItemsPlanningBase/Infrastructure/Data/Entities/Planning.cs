@@ -68,26 +68,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public bool DescriptionEnabled { get; set; }
         
-        public bool SdkFieldEnabled1 { get; set; }
-        
-        public bool SdkFieldEnabled2 { get; set; }
-        
-        public bool SdkFieldEnabled3 { get; set; }
-        
-        public bool SdkFieldEnabled4 { get; set; }
-        
-        public bool SdkFieldEnabled5 { get; set; }
-        
-        public bool SdkFieldEnabled6 { get; set; }
-        
-        public bool SdkFieldEnabled7 { get; set; }
-        
-        public bool SdkFieldEnabled8 { get; set; }
-        
-        public bool SdkFieldEnabled9 { get; set; }
-        
-        public bool SdkFieldEnabled10 { get; set; }
-        
         public bool ItemNumberEnabled { get; set; }
         
         public bool LocationCodeEnabled { get; set; }
@@ -97,28 +77,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool NumberOfImagesEnabled { get; set; }
         
         public bool TypeEnabled { get; set; }
-        
-        public int? SdkFieldId1 { get; set; }
-
-        public int? SdkFieldId2 { get; set; }
-
-        public int? SdkFieldId3 { get; set; }
-
-        public int? SdkFieldId4 { get; set; }
-
-        public int? SdkFieldId5 { get; set; }
-
-        public int? SdkFieldId6 { get; set; }
-
-        public int? SdkFieldId7 { get; set; }
-
-        public int? SdkFieldId8 { get; set; }
-
-        public int? SdkFieldId9 { get; set; }
-
-        public int? SdkFieldId10 { get; set; }
 
         public virtual Item Item { get; set; } = new Item();
+
+        public string SdkFolderName { get; set; }
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
@@ -164,31 +126,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             planning.UploadedDataEnabled = UploadedDataEnabled;
             planning.LabelEnabled = LabelEnabled;
             planning.DescriptionEnabled = DescriptionEnabled;
-            planning.SdkFieldEnabled1 = SdkFieldEnabled1;
-            planning.SdkFieldEnabled2 = SdkFieldEnabled2;
-            planning.SdkFieldEnabled3 = SdkFieldEnabled3;
-            planning.SdkFieldEnabled4 = SdkFieldEnabled4;
-            planning.SdkFieldEnabled5 = SdkFieldEnabled5;
-            planning.SdkFieldEnabled6 = SdkFieldEnabled6;
-            planning.SdkFieldEnabled7 = SdkFieldEnabled7;
-            planning.SdkFieldEnabled8 = SdkFieldEnabled8;
-            planning.SdkFieldEnabled9 = SdkFieldEnabled9;
-            planning.SdkFieldEnabled10 = SdkFieldEnabled10;
             planning.ItemNumberEnabled = ItemNumberEnabled;
             planning.LocationCodeEnabled = LocationCodeEnabled;
             planning.BuildYearEnabled = BuildYearEnabled;
             planning.TypeEnabled = TypeEnabled;
-            planning.SdkFieldId1 = SdkFieldId1;
-            planning.SdkFieldId2 = SdkFieldId2;
-            planning.SdkFieldId3 = SdkFieldId3;
-            planning.SdkFieldId4 = SdkFieldId4;
-            planning.SdkFieldId5 = SdkFieldId5;
-            planning.SdkFieldId6 = SdkFieldId6;
-            planning.SdkFieldId7 = SdkFieldId7;
-            planning.SdkFieldId8 = SdkFieldId8;
-            planning.SdkFieldId9 = SdkFieldId9;
-            planning.SdkFieldId10 = SdkFieldId10;
             planning.NumberOfImagesEnabled = NumberOfImagesEnabled;
+            planning.SdkFolderName = SdkFolderName;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -249,31 +192,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 UploadedDataEnabled = planning.UploadedDataEnabled,
                 LabelEnabled = planning.LabelEnabled,
                 DescriptionEnabled = planning.DescriptionEnabled,
-                SdkFieldEnabled1 = planning.SdkFieldEnabled1,
-                SdkFieldEnabled2 = planning.SdkFieldEnabled2,
-                SdkFieldEnabled3 = planning.SdkFieldEnabled3,
-                SdkFieldEnabled4 = planning.SdkFieldEnabled4,
-                SdkFieldEnabled5 = planning.SdkFieldEnabled5,
-                SdkFieldEnabled6 = planning.SdkFieldEnabled6,
-                SdkFieldEnabled7 = planning.SdkFieldEnabled7,
-                SdkFieldEnabled8 = planning.SdkFieldEnabled8,
-                SdkFieldEnabled9 = planning.SdkFieldEnabled9,
-                SdkFieldEnabled10 = planning.SdkFieldEnabled10,
                 ItemNumberEnabled = planning.ItemNumberEnabled,
                 LocationCodeEnabled = planning.LocationCodeEnabled,
                 BuildYearEnabled = planning.BuildYearEnabled,
                 NumberOfImagesEnabled = planning.NumberOfImagesEnabled,
                 TypeEnabled = planning.TypeEnabled,
-                SdkFieldId1 = planning.SdkFieldId1,
-                SdkFieldId2 = planning.SdkFieldId2,
-                SdkFieldId3 = planning.SdkFieldId3,
-                SdkFieldId4 = planning.SdkFieldId4,
-                SdkFieldId5 = planning.SdkFieldId5,
-                SdkFieldId6 = planning.SdkFieldId6,
-                SdkFieldId7 = planning.SdkFieldId7,
-                SdkFieldId8 = planning.SdkFieldId8,
-                SdkFieldId9 = planning.SdkFieldId9,
-                SdkFieldId10 = planning.SdkFieldId10,
+                SdkFolderName = planning.SdkFolderName
             };
 
             return planningVersion;
