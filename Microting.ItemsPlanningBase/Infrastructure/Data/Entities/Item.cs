@@ -39,6 +39,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string LocationCode { get; set; }
         public string BuildYear { get; set; }
         public string Type { get; set; }
+        public int eFormSdkFolderId { get; set; }
 
         public int PlanningId { get; set; }
         public virtual Planning Planning { get; set; }
@@ -62,6 +63,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 WorkflowState = Constants.WorkflowStates.Created,
                 UpdatedByUserId = UpdatedByUserId,
                 CreatedByUserId = CreatedByUserId,
+                eFormSdkFolderId = eFormSdkFolderId
             };
 
             await dbContext.Items.AddAsync(item);
@@ -92,6 +94,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             item.Type = Type;
             item.UpdatedAt = UpdatedAt;
             item.UpdatedByUserId = UpdatedByUserId;
+            item.eFormSdkFolderId = eFormSdkFolderId;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -145,6 +148,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 WorkflowState = item.WorkflowState,
                 UpdatedByUserId = item.UpdatedByUserId,
                 CreatedByUserId = item.CreatedByUserId,
+                eFormSdkFolderId = item.eFormSdkFolderId
             };
 
             return itemVersion;

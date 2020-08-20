@@ -41,5 +41,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         [ForeignKey("Item")]
         public int ItemId { get; set; }
+        public int eFormSdkFolderId { get; set; }
     }
 }

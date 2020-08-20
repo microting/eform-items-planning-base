@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.ItemsPlanningBase.Infrastructure.Data;
 
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    partial class ItemsPlanningPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200810120121_AddingFolderIdToItem")]
+    partial class AddingFolderIdToItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,9 +184,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("FolderId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("ItemNumberEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -218,8 +217,65 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("SdkFolderName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<bool>("SdkFieldEnabled1")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled10")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled2")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled3")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled4")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled5")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled6")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled7")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled8")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled9")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SdkFieldId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId10")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId2")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId3")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId4")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId5")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId6")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId7")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId8")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId9")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TypeEnabled")
                         .HasColumnType("tinyint(1)");
@@ -759,9 +815,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("FolderId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("ItemNumberEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -798,8 +851,65 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("SdkFolderName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<bool>("SdkFieldEnabled1")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled10")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled2")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled3")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled4")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled5")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled6")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled7")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled8")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SdkFieldEnabled9")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("SdkFieldId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId10")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId2")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId3")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId4")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId5")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId6")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId7")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId8")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SdkFieldId9")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TypeEnabled")
                         .HasColumnType("tinyint(1)");
