@@ -57,6 +57,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 DayOfMonth = 3,
                 Version = 1,
                 WorkflowState = Constants.WorkflowStates.Created,
+                FolderId = 1,
             };
 
             // Act
@@ -122,7 +123,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 DayOfMonth = 1,
                 Version = 1,
                 WorkflowState = Constants.WorkflowStates.Created,
-                
+                FolderId = 1,
             };
             await planning.Create(DbContext);
 
@@ -151,6 +152,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planning.DayOfMonth, itemLists[0].DayOfMonth);
             Assert.AreEqual(planning.RelatedEFormId, itemLists[0].RelatedEFormId);
             Assert.AreEqual(planning.RelatedEFormName, itemLists[0].RelatedEFormName);
+            Assert.AreEqual(planning.FolderId, itemLists[0].FolderId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemLists[0].WorkflowState);
             Assert.AreEqual(planning.Id, itemLists[0].Id);
             Assert.AreEqual(2, itemLists[0].Version);

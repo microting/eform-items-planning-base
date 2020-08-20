@@ -117,5 +117,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int? SdkFieldId9 { get; set; }
 
         public int? SdkFieldId10 { get; set; }
+
+        public int? FolderId { get; set; }
     }
 }

@@ -118,6 +118,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public int? SdkFieldId10 { get; set; }
 
+        public int? FolderId { get; set; }
+
         public virtual Item Item { get; set; } = new Item();
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
@@ -189,6 +191,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             planning.SdkFieldId9 = SdkFieldId9;
             planning.SdkFieldId10 = SdkFieldId10;
             planning.NumberOfImagesEnabled = NumberOfImagesEnabled;
+            planning.FolderId = FolderId;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -274,6 +277,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
                 SdkFieldId8 = planning.SdkFieldId8,
                 SdkFieldId9 = planning.SdkFieldId9,
                 SdkFieldId10 = planning.SdkFieldId10,
+                FolderId = planning.FolderId,
             };
 
             return planningVersion;
