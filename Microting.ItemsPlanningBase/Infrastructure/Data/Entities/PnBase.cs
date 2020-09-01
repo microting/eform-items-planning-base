@@ -73,7 +73,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
             var curreList = obj.GetType().GetProperties();
             foreach(var prop in curreList)
             {
-                if (!prop.PropertyType.IsGenericType)
+                if (!prop.PropertyType.FullName.Contains("Microting.ItemsPlanningBase.Infrastructure.Data.Entities"))
                 {
                     try
                     {

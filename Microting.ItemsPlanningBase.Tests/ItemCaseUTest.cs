@@ -125,7 +125,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
+            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
 
             itemCase.Status = 77;
             await itemCase.Update(DbContext);
@@ -196,7 +196,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
+            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
 
             await itemCase.Delete(DbContext);
 
