@@ -62,7 +62,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             // Act
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             List<Item> items = DbContext.Items.AsNoTracking().ToList();
             List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
@@ -127,7 +127,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
             item = await DbContext.Items.AsNoTracking().FirstOrDefaultAsync();
@@ -215,7 +215,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
             item = await DbContext.Items.FirstOrDefaultAsync();

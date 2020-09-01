@@ -54,7 +54,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = planning.Id,
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {
@@ -112,7 +112,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {
@@ -183,7 +183,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {

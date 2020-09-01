@@ -32,7 +32,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
     using Microsoft.EntityFrameworkCore;
     using Microting.eForm.Infrastructure.Constants;
 
-    public class Planning : BaseEntity
+    public class Planning : PnBase
     {
         public string Name { get; set; }
         
@@ -84,123 +84,5 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
-
-        public async Task Create(ItemsPlanningPnDbContext dbContext)
-        {
-            WorkflowState = Constants.WorkflowStates.Created;
-            Version = 1;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            await dbContext.Plannings.AddAsync(this);
-            await dbContext.SaveChangesAsync();
-
-            await dbContext.PlanningVersions.AddAsync(MapItemListVersion(this));
-            await dbContext.SaveChangesAsync();
-        }
-
-        public async Task Update(ItemsPlanningPnDbContext dbContext)
-        {
-            var planning = await dbContext.Plannings.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (planning == null)
-            {
-                throw new NullReferenceException($"Could not find planning with id: {Id}");
-            }
-
-            planning.Name = Name;
-            planning.Description = Description;
-            planning.Enabled = Enabled;
-            planning.RepeatUntil = RepeatUntil;
-            planning.RelatedEFormId = RelatedEFormId;
-            planning.RelatedEFormName = RelatedEFormName;
-            planning.RepeatEvery = RepeatEvery;
-            planning.DayOfWeek = DayOfWeek;
-            planning.RepeatType = RepeatType;
-            planning.DayOfMonth = DayOfMonth;
-            planning.WorkflowState = WorkflowState;
-            planning.UpdatedByUserId = UpdatedByUserId;
-            planning.LastExecutedTime = LastExecutedTime;
-            planning.DoneAtEnabled = DoneAtEnabled;
-            planning.DeployedAtEnabled = DeployedAtEnabled;
-            planning.DoneByUserNameEnabled = DoneByUserNameEnabled;
-            planning.UploadedDataEnabled = UploadedDataEnabled;
-            planning.LabelEnabled = LabelEnabled;
-            planning.DescriptionEnabled = DescriptionEnabled;
-            planning.ItemNumberEnabled = ItemNumberEnabled;
-            planning.LocationCodeEnabled = LocationCodeEnabled;
-            planning.BuildYearEnabled = BuildYearEnabled;
-            planning.TypeEnabled = TypeEnabled;
-            planning.NumberOfImagesEnabled = NumberOfImagesEnabled;
-            planning.SdkFolderName = SdkFolderName;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                planning.UpdatedAt = DateTime.UtcNow;
-                planning.Version += 1;
-
-                await dbContext.PlanningVersions.AddAsync(MapItemListVersion(planning));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Delete(ItemsPlanningPnDbContext dbContext)
-        {
-            Planning planning = await dbContext.Plannings.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (planning == null)
-            {
-                throw new NullReferenceException($"Could not find planning with id: {Id}");
-            }
-
-            planning.WorkflowState = Constants.WorkflowStates.Removed;
-            
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                planning.UpdatedAt = DateTime.UtcNow;
-                planning.Version += 1;
-
-                await dbContext.PlanningVersions.AddAsync(MapItemListVersion(planning));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        private PlanningVersion MapItemListVersion(Planning planning)
-        {
-            var planningVersion = new PlanningVersion
-            {
-                Name = planning.Name,
-                Description = planning.Description,
-                Enabled = planning.Enabled,
-                RepeatUntil = planning.RepeatUntil,
-                RelatedEFormId = planning.RelatedEFormId,
-                RelatedEFormName = planning.RelatedEFormName,
-                DayOfWeek = planning.DayOfWeek,
-                RepeatEvery = planning.RepeatEvery,
-                RepeatType = planning.RepeatType,
-                DayOfMonth = planning.DayOfMonth,
-                PlanningId = planning.Id,
-                Version = planning.Version,
-                CreatedAt = planning.CreatedAt,
-                WorkflowState = planning.WorkflowState,
-                UpdatedAt = planning.UpdatedAt,
-                UpdatedByUserId = planning.UpdatedByUserId,
-                CreatedByUserId = planning.CreatedByUserId,
-                LastExecutedTime = planning.LastExecutedTime,
-                DoneAtEnabled = planning.DoneAtEnabled,
-                DeployedAtEnabled = planning.DeployedAtEnabled,
-                DoneByUserNameEnabled = planning.DoneByUserNameEnabled,
-                UploadedDataEnabled = planning.UploadedDataEnabled,
-                LabelEnabled = planning.LabelEnabled,
-                DescriptionEnabled = planning.DescriptionEnabled,
-                ItemNumberEnabled = planning.ItemNumberEnabled,
-                LocationCodeEnabled = planning.LocationCodeEnabled,
-                BuildYearEnabled = planning.BuildYearEnabled,
-                NumberOfImagesEnabled = planning.NumberOfImagesEnabled,
-                TypeEnabled = planning.TypeEnabled,
-                SdkFolderName = planning.SdkFolderName
-            };
-
-            return planningVersion;
-        }
     }
 }
