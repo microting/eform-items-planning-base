@@ -62,7 +62,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             // Act
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             List<Item> items = DbContext.Items.AsNoTracking().ToList();
             List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
@@ -127,10 +127,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
-            item = await DbContext.Items.AsNoTracking().FirstOrDefaultAsync();
+            // item = await DbContext.Items.AsNoTracking().FirstOrDefaultAsync();
 
             string oldName = item.Name;
             item.Name = "hello";
@@ -164,7 +164,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             Assert.AreEqual(item.UpdatedByUserId, itemVersions[0].UpdatedByUserId);
             Assert.AreEqual(item.CreatedByUserId, itemVersions[0].CreatedByUserId);
-            Assert.AreEqual(item.Version, itemVersions[0].Version);
+            Assert.AreEqual(1, itemVersions[0].Version);
             Assert.AreEqual(item.WorkflowState, itemVersions[0].WorkflowState);
             Assert.AreEqual(item.ItemNumber, itemVersions[0].ItemNumber);
             Assert.AreEqual(item.LocationCode, itemVersions[0].LocationCode);
@@ -215,7 +215,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 LocationCode = "2",
                 Sku = "3",
             };
-            await item.Save(DbContext);
+            await item.Create(DbContext);
 
             // Act
             item = await DbContext.Items.FirstOrDefaultAsync();

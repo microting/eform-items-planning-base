@@ -127,7 +127,7 @@ namespace Microting.ItemsPlanningBase.Tests
             await planning.Create(DbContext);
 
             // Act
-            planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
+            // planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
 
             string oldName = planning.Name;
             planning.Name = "hello";
@@ -211,7 +211,7 @@ namespace Microting.ItemsPlanningBase.Tests
             await planning.Create(DbContext);
 
             // Act
-            planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
+            // planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
 
             Assert.AreEqual(Constants.WorkflowStates.Created, planning.WorkflowState);
 

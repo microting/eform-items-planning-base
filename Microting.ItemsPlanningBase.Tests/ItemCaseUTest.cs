@@ -54,7 +54,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = planning.Id,
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {
@@ -112,7 +112,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {
@@ -125,7 +125,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
+            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
 
             itemCase.Status = 77;
             await itemCase.Update(DbContext);
@@ -183,7 +183,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 PlanningId = itemList.Id
             };
             
-            await item.Save(DbContext);
+            await item.Create(DbContext);
             
             PlanningCase itemCase = new PlanningCase
             {
@@ -196,7 +196,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             // Act
-            itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
+            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
 
             await itemCase.Delete(DbContext);
 

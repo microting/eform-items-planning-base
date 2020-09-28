@@ -24,90 +24,11 @@ SOFTWARE.
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
-    using Microting.eForm.Infrastructure.Constants;
 
-    public class PlanningSite : BaseEntity
+    public class PlanningSite : PnBase
     {
         public int SiteId { get; set; }
         public int PlanningId { get; set; }
         public virtual Planning Planning { get; set; }
-
-        public async Task Create(ItemsPlanningPnDbContext dbContext)
-        {
-            WorkflowState = Constants.WorkflowStates.Created;
-            Version = 1;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            await dbContext.PlanningSites.AddAsync(this);
-            await dbContext.SaveChangesAsync();
-
-            await dbContext.PlanningSiteVersions.AddAsync(MapItemListVersion(this));
-            await dbContext.SaveChangesAsync();
-        }
-
-        public async Task Update(ItemsPlanningPnDbContext dbContext)
-        {
-            var planningSite = await dbContext.PlanningSites.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (planningSite == null)
-            {
-                throw new NullReferenceException($"Could not find planning site with id: {Id}");
-            }
-
-            planningSite.PlanningId = PlanningId;
-            planningSite.SiteId = SiteId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                planningSite.UpdatedAt = DateTime.UtcNow;
-                planningSite.Version += 1;
-
-                await dbContext.PlanningSiteVersions.AddAsync(MapItemListVersion(planningSite));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Delete(ItemsPlanningPnDbContext dbContext)
-        {
-            var planningSite = await dbContext.PlanningSites.FirstOrDefaultAsync(x => x.Id == Id);
-
-            if (planningSite == null)
-            {
-                throw new NullReferenceException($"Could not find planning site with id: {Id}");
-            }
-
-            planningSite.WorkflowState = Constants.WorkflowStates.Removed;
-            
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                planningSite.UpdatedAt = DateTime.UtcNow;
-                planningSite.Version += 1;
-
-                await dbContext.PlanningSiteVersions.AddAsync(MapItemListVersion(planningSite));
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        private PlanningSiteVersion MapItemListVersion(PlanningSite planningSite)
-        {
-            var planningSiteVersion = new PlanningSiteVersion
-            {
-                PlanningId = planningSite.PlanningId,
-                Version = planningSite.Version,
-                CreatedAt = planningSite.CreatedAt,
-                WorkflowState = planningSite.WorkflowState,
-                UpdatedAt = planningSite.UpdatedAt,
-                UpdatedByUserId = planningSite.UpdatedByUserId,
-                CreatedByUserId = planningSite.CreatedByUserId,
-                SiteId = planningSite.SiteId,
-                PlanningSiteId = planningSite.Id,
-            };
-
-            return planningSiteVersion;
-        }
     }
 }
