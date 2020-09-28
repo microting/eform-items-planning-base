@@ -84,5 +84,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
+
+        public virtual ICollection<PlanningsTags> PlanningsTags { get; set; }
     }
 }
