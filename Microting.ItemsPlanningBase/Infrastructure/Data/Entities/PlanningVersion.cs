@@ -79,5 +79,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool NumberOfImagesEnabled { get; set; }
 
         public string SdkFolderName { get; set; }
+        public string SdkParentFolderName { get; set; }
     }
 }
