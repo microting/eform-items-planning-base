@@ -27,5 +27,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Const
     {
         public const string AccessItemsPlanningPlugin = "items_planning_plugin_access";
         public const string CreatePlannings = "plannings_create";
+        public const string EditPlanning = "planning_edit";
+        public const string GetPlannings = "plannings_get";
     }
 }
