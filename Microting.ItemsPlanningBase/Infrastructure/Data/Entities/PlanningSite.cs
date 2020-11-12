@@ -24,9 +24,11 @@ SOFTWARE.
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System;
 
     public class PlanningSite : PnBase
     {
+        public DateTime? LastExecutedTime { get; set; }
         public int SiteId { get; set; }
         public int PlanningId { get; set; }
         public virtual Planning Planning { get; set; }
