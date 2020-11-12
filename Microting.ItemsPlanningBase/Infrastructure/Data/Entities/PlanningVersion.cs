@@ -47,6 +47,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public DateTime? LastExecutedTime { get; set; }
 
+        public DateTime StartDate { get; set; }
+
         public bool Enabled { get; set; }
         
         public int RelatedEFormId { get; set; }
