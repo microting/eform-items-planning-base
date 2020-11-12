@@ -24,11 +24,13 @@ SOFTWARE.
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
     public class PlanningSiteVersion : BaseEntity
     {
+        public DateTime? LastExecutedTime { get; set; }
         public int SiteId { get; set; }
 
         public int PlanningId { get; set; }
