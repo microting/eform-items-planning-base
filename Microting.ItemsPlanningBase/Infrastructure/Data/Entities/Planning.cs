@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2020 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,8 @@ SOFTWARE.
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
     using System.Collections.Generic;
-    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
     using System;
-    using System.Threading.Tasks;
     using Enums;
-    using Microsoft.EntityFrameworkCore;
-    using Microting.eForm.Infrastructure.Constants;
 
     public class Planning : PnBase
     {
@@ -49,6 +45,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int? DayOfMonth { get; set; }
         
         public DateTime? LastExecutedTime { get; set; }
+
+        public DateTime StartDate { get; set; }
 
         public bool Enabled { get; set; }
         
