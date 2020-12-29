@@ -10,8 +10,8 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
-      <PackageReference Include="Microting.eForm" Version="4.1.6" />
-      <PackageReference Include="Microting.eFormApi.BasePn" Version="2.0.57" />
+      <PackageReference Include="Microting.eForm" Version="4.1.7" />
+      <PackageReference Include="Microting.eFormApi.BasePn" Version="2.0.58" />
     </ItemGroup>
 
 </Project>
