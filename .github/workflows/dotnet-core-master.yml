@@ -42,3 +42,13 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Unit Tests
       run: dotnet test --no-restore -c Release -v n Microting.ItemsPlanningBase.Tests/Microting.ItemsPlanningBase.Tests.csproj
+    - name: Notify slack fail
+      if: ${{ failure() }}
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        message_id: ${{ steps.slack.outputs.message_id }}
+        channel_id: C017TF6Q46T
+        status: FAILED
+        color: danger
