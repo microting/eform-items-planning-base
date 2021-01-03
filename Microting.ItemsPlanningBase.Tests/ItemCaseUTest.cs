@@ -27,6 +27,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
+using Microting.eFormApi.BasePn.Infrastructure.Consts;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -39,13 +40,24 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Save_DoesSave()
         {
             // Arrange
-            Planning planning = new Planning
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+            Planning planning = new Planning();
 
             await planning.Create(DbContext);
             
+            var commonTranslationModels = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = planning.Id
+                }
+            };
+            foreach (var translationModel in commonTranslationModels)
+            {
+                await translationModel.Create(DbContext);
+            }
+
             Item item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
@@ -97,12 +109,23 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Update_DoesUpdate()
         {
             // Arrange
-            Planning itemList = new Planning
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+            Planning itemList = new Planning();
 
             await itemList.Create(DbContext);
+
+            var commonTranslationModels = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = itemList.Id
+                }
+            };
+            foreach (var translationModel in commonTranslationModels)
+            {
+                await translationModel.Create(DbContext);
+            }
             
             Item item = new Item
             {
@@ -168,13 +191,24 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Delete_DoesDelete()
         {
             // Arrange
-            Planning itemList = new Planning
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+            Planning itemList = new Planning();
 
             await itemList.Create(DbContext);
-            
+
+            var commonTranslationModels = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = itemList.Id
+                }
+            };
+            foreach (var translationModel in commonTranslationModels)
+            {
+                await translationModel.Create(DbContext);
+            }
+
             Item item = new Item
             {
                 Name = Guid.NewGuid().ToString(),

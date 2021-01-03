@@ -27,6 +27,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
+using Microting.eFormApi.BasePn.Infrastructure.Consts;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -43,7 +44,6 @@ namespace Microting.ItemsPlanningBase.Tests
             // Arrange
             Planning planning = new Planning
             {
-                Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
                 RelatedEFormId = 35,
@@ -62,16 +62,40 @@ namespace Microting.ItemsPlanningBase.Tests
             // Act
             await planning.Create(DbContext);
 
+            var planingNameTranslations = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = planning.Id
+                }
+            };
+            foreach (var translationModel in planingNameTranslations)
+            {
+                await translationModel.Create(DbContext);
+            }
+
             List<Planning> itemLists = DbContext.Plannings
                 .AsNoTracking()
                 .ToList();
 
+            List<PlaningNameTranslations> planingNameTranslationsList = DbContext.PlaningNameTranslations
+                .AsNoTracking()
+                .Where(x => x.PlaningId == itemLists[0].Id)
+                .ToList();
+
             List<PlanningVersion> itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
-            
+
+            List<PlaningNameTranslationsVersion> planingNameTranslationsListVersions = DbContext.PlaningNameTranslationsVersions
+                .AsNoTracking()
+                .Where(x => x.PlaningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .ToList();
+
             // Assert
             Assert.AreEqual(1, itemLists.Count);
             Assert.AreEqual(1, itemListVersions.Count);
-            Assert.AreEqual(planning.Name, itemLists[0].Name);
+            Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsList[0].Name);
             Assert.AreEqual(planning.CreatedByUserId, itemLists[0].CreatedByUserId);
             Assert.AreEqual(planning.UpdatedByUserId, itemLists[0].UpdatedByUserId);
             Assert.AreEqual(planning.Description, itemLists[0].Description);
@@ -86,8 +110,8 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planning.DayOfMonth, itemLists[0].DayOfMonth);
             Assert.AreEqual(planning.Id, itemLists[0].Id);
             Assert.AreEqual(1, itemLists[0].Version);
-                        
-            Assert.AreEqual(planning.Name, itemListVersions[0].Name);
+
+            Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[0].Name);
             Assert.AreEqual(planning.Description, itemListVersions[0].Description);
             Assert.AreEqual(planning.Enabled, itemListVersions[0].Enabled);
             Assert.AreEqual(planning.RepeatType, itemListVersions[0].RepeatType);
@@ -108,7 +132,6 @@ namespace Microting.ItemsPlanningBase.Tests
             // Arrange
             Planning planning = new Planning
             {
-                Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
                 RelatedEFormId = 35,
@@ -127,19 +150,44 @@ namespace Microting.ItemsPlanningBase.Tests
             await planning.Create(DbContext);
 
             // Act
+
+            var planingNameTranslations = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = planning.Id
+                }
+            };
+            foreach (var translationModel in planingNameTranslations)
+            {
+                await translationModel.Create(DbContext);
+            }
+
             // planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
 
-            string oldName = planning.Name;
-            planning.Name = "hello";
-            await planning.Update(DbContext);
+            string oldName = planingNameTranslations[0].Name;
+            planingNameTranslations[0].Name = "hello";
+            await planingNameTranslations[0].Update(DbContext);
 
             List<Planning> itemLists = DbContext.Plannings.AsNoTracking().ToList();
+            List<PlaningNameTranslations> planingNameTranslationsList = DbContext.PlaningNameTranslations
+                .AsNoTracking()
+                .Where(x => x.PlaningId == itemLists[0].Id)
+                .ToList();
             List<PlanningVersion> itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
-            
+            List<PlaningNameTranslationsVersion> planingNameTranslationsListVersions = DbContext.PlaningNameTranslationsVersions
+                .AsNoTracking()
+                .Where(x => x.PlaningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .ToList();
+
             // Assert
             Assert.AreEqual(1, itemLists.Count);
-            Assert.AreEqual(2, itemListVersions.Count);
-            Assert.AreEqual(planning.Name, itemLists[0].Name);
+            Assert.AreEqual(1, itemListVersions.Count);
+            Assert.AreEqual(1, planingNameTranslationsList.Count);
+            Assert.AreEqual(2, planingNameTranslationsListVersions.Count);
+            Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsList[0].Name);
             Assert.AreEqual(planning.Description, itemLists[0].Description);
             Assert.AreEqual(planning.Enabled, itemLists[0].Enabled);
             Assert.AreEqual(planning.UpdatedByUserId, itemLists[0].UpdatedByUserId);
@@ -153,15 +201,14 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planning.RelatedEFormName, itemLists[0].RelatedEFormName);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemLists[0].WorkflowState);
             Assert.AreEqual(planning.Id, itemLists[0].Id);
-            Assert.AreEqual(2, itemLists[0].Version);
-                        
-            Assert.AreEqual(oldName, itemListVersions[0].Name);
+            Assert.AreEqual(1, itemLists[0].Version);
+
+            Assert.AreEqual(oldName, planingNameTranslationsListVersions[0].Name);
             Assert.AreEqual(planning.Description, itemListVersions[0].Description);
             Assert.AreEqual(planning.Enabled, itemListVersions[0].Enabled);
             Assert.AreEqual(planning.RepeatType, itemListVersions[0].RepeatType);
             Assert.AreEqual(planning.RelatedEFormId, itemListVersions[0].RelatedEFormId);
             Assert.AreEqual(planning.RelatedEFormName, itemListVersions[0].RelatedEFormName);
-
             Assert.AreEqual(planning.UpdatedByUserId, itemListVersions[0].UpdatedByUserId);
             Assert.AreEqual(planning.CreatedByUserId, itemListVersions[0].CreatedByUserId);
             Assert.AreEqual(planning.RepeatUntil, itemListVersions[0].RepeatUntil);
@@ -170,22 +217,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planning.Id, itemListVersions[0].PlanningId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
             Assert.AreEqual(1, itemListVersions[0].Version);
-            Assert.AreEqual("hello", itemListVersions[1].Name);
-            Assert.AreEqual(planning.Description, itemListVersions[1].Description);
-            Assert.AreEqual(planning.Enabled, itemListVersions[1].Enabled);
-            Assert.AreEqual(planning.RepeatType, itemListVersions[1].RepeatType);
-            Assert.AreEqual(planning.RelatedEFormId, itemListVersions[1].RelatedEFormId);
-            Assert.AreEqual(planning.RelatedEFormName, itemListVersions[1].RelatedEFormName);
-
-            Assert.AreEqual(planning.UpdatedByUserId, itemListVersions[1].UpdatedByUserId);
-            Assert.AreEqual(planning.CreatedByUserId, itemListVersions[1].CreatedByUserId);
-            Assert.AreEqual(planning.RepeatUntil, itemListVersions[1].RepeatUntil);
-            Assert.AreEqual(planning.DayOfWeek, itemListVersions[1].DayOfWeek);
-            Assert.AreEqual(planning.RepeatEvery, itemListVersions[1].RepeatEvery);
-
-            Assert.AreEqual(planning.Id, itemListVersions[1].PlanningId);
-            Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[1].WorkflowState);
-            Assert.AreEqual(2, itemListVersions[1].Version);
+            Assert.AreEqual("hello", planingNameTranslationsListVersions[1].Name);
         }
 
         [Test]
@@ -194,7 +226,6 @@ namespace Microting.ItemsPlanningBase.Tests
             // Arrange
             Planning planning = new Planning
             {
-                Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 Enabled = true,
                 RelatedEFormId = 35,
@@ -210,56 +241,75 @@ namespace Microting.ItemsPlanningBase.Tests
             };
             await planning.Create(DbContext);
 
+            var planingNameTranslations = new List<PlaningNameTranslations>()
+            {
+                new PlaningNameTranslations()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LanguageId = 1,
+                    PlaningId = planning.Id
+                }
+            };
+            foreach (var translationModel in planingNameTranslations)
+            {
+                await translationModel.Create(DbContext);
+            }
+
             // Act
             // planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
 
             Assert.AreEqual(Constants.WorkflowStates.Created, planning.WorkflowState);
 
             await planning.Delete(DbContext);
-
+            await planingNameTranslations[0].Delete(DbContext);
             List<Planning> itemLists = DbContext.Plannings.AsNoTracking().ToList();
+            List<PlaningNameTranslations> planingNameTranslationsList = DbContext.PlaningNameTranslations
+                .AsNoTracking()
+                .Where(x => x.PlaningId == itemLists[0].Id)
+                .ToList();
             List<PlanningVersion> itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
-            
+            List<PlaningNameTranslationsVersion> planingNameTranslationsListVersions = DbContext.PlaningNameTranslationsVersions
+                .AsNoTracking()
+                .Where(x => x.PlaningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .ToList();
+
             // Assert
             Assert.AreEqual(1, itemLists.Count);
             Assert.AreEqual(2, itemListVersions.Count);
-            Assert.AreEqual(planning.Name, itemLists[0].Name);
+            Assert.AreEqual(1, planingNameTranslationsList.Count);
+            Assert.AreEqual(2, planingNameTranslationsListVersions.Count);
+            Assert.AreEqual(planingNameTranslationsList[0].Name, planingNameTranslations[0].Name);
             Assert.AreEqual(planning.Description, itemLists[0].Description);
             Assert.AreEqual(planning.Enabled, itemLists[0].Enabled);
             Assert.AreEqual(planning.RepeatType, itemLists[0].RepeatType);
             Assert.AreEqual(planning.RelatedEFormId, itemLists[0].RelatedEFormId);
             Assert.AreEqual(planning.RelatedEFormName, itemLists[0].RelatedEFormName);
-
             Assert.AreEqual(planning.UpdatedByUserId, itemLists[0].UpdatedByUserId);
             Assert.AreEqual(planning.CreatedByUserId, itemLists[0].CreatedByUserId);
             Assert.AreEqual(planning.RepeatEvery, itemLists[0].RepeatEvery);
             Assert.AreEqual(planning.RepeatUntil, itemLists[0].RepeatUntil);
             Assert.AreEqual(planning.DayOfWeek, itemLists[0].DayOfWeek);
             Assert.AreEqual(planning.DayOfMonth, itemLists[0].DayOfMonth);
-
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemLists[0].WorkflowState);
             Assert.AreEqual(planning.Id, itemLists[0].Id);
             Assert.AreEqual(2, itemLists[0].Version);
-                        
-            Assert.AreEqual(planning.Name, itemListVersions[0].Name);
+
+            Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[0].Name);
             Assert.AreEqual(planning.Description, itemListVersions[0].Description);
             Assert.AreEqual(planning.Enabled, itemListVersions[0].Enabled);
             Assert.AreEqual(planning.RepeatType, itemListVersions[0].RepeatType);
             Assert.AreEqual(planning.RelatedEFormId, itemListVersions[0].RelatedEFormId);
             Assert.AreEqual(planning.RelatedEFormName, itemListVersions[0].RelatedEFormName);
-
             Assert.AreEqual(planning.UpdatedByUserId, itemListVersions[0].UpdatedByUserId);
             Assert.AreEqual(planning.CreatedByUserId, itemListVersions[0].CreatedByUserId);
             Assert.AreEqual(planning.RepeatEvery, itemListVersions[0].RepeatEvery);
             Assert.AreEqual(planning.RepeatUntil, itemListVersions[0].RepeatUntil);
             Assert.AreEqual(planning.DayOfWeek, itemListVersions[0].DayOfWeek);
             Assert.AreEqual(planning.DayOfMonth, itemListVersions[0].DayOfMonth);
-
             Assert.AreEqual(planning.Id, itemListVersions[0].PlanningId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemListVersions[0].WorkflowState);
             Assert.AreEqual(1, itemListVersions[0].Version);
-            
-            Assert.AreEqual(planning.Name, itemListVersions[1].Name);
+            Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[1].Name);
             Assert.AreEqual(planning.Description, itemListVersions[1].Description);
             Assert.AreEqual(planning.Enabled, itemListVersions[1].Enabled);
             Assert.AreEqual(planning.RepeatType, itemListVersions[1].RepeatType);
@@ -270,7 +320,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planning.RepeatEvery, itemListVersions[1].RepeatEvery);
             Assert.AreEqual(planning.RepeatUntil, itemListVersions[1].RepeatUntil);
             Assert.AreEqual(planning.DayOfWeek, itemListVersions[1].DayOfWeek);
-
             Assert.AreEqual(planning.Id, itemListVersions[1].PlanningId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemListVersions[1].WorkflowState);
             Assert.AreEqual(2, itemListVersions[1].Version);
