@@ -45,3 +45,13 @@ jobs:
       run: dotnet pack Microting.ItemsPlanningBase.sln -c Release -o ./artifacts -p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
     - name: Push generated package to GitHub registry
       run: dotnet nuget push /home/runner/work/eform-items-planning-base/eform-items-planning-base/artifacts/Microting.ItemsPlanningBase.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{secrets.NUGET_SECRET_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
+    - name: Notify slack fail
+      if: ${{ failure() }}
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        message_id: ${{ steps.slack.outputs.message_id }}
+        channel_id: C017TF6Q46T
+        status: FAILED
+        color: danger
