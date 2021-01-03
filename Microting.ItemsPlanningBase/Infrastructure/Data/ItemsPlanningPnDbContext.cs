@@ -59,6 +59,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<PluginPermission> PluginPermissions { get; set; }
         public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
         public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
+        public DbSet<PlaningNameTranslations> PlaningNameTranslations { get; set; }
+        public DbSet<PlaningNameTranslationsVersion> PlaningNameTranslationsVersions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
