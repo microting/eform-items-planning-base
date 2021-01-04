@@ -21,7 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -32,7 +31,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
     {
         public ItemsPlanningPnDbContext CreateDbContext(string[] args)
         {
-            var defaultCs = "Server = localhost; port = 3306; Database = items-planning-pn; user = root; Convert Zero Datetime = true;";
+            var defaultCs = "Server = localhost; port = 3306; Database = items-planning-pn; user = root; password = Qq1234567$;Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0]: defaultCs);
             optionsBuilder.UseLazyLoadingProxies(true);

@@ -23,15 +23,19 @@ SOFTWARE.
 */
 
 
+
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
-    public class PlaningNameTranslationsVersion : BaseEntity
+    using Microting.eForm.Infrastructure.Data.Entities;
+
+    public class PlanningNameTranslationsVersion : eFormApi.BasePn.Infrastructure.Database.Base.BaseEntity
     {
         public string Name { get; set; }
 
-        [ForeignKey("PlaningNameTranslations")]
-        public int PlaningNameTranslationsId { get; set; }
+        public virtual Language Language { get; set; }
+
+        public virtual Planning Planning { get; set; }
+
+        public int PlanningNameTranslationsId { get; set; }
     }
 }

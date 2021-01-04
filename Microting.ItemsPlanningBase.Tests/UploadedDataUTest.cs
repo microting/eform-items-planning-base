@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
-using Microting.eFormApi.BasePn.Infrastructure.Consts;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
+using UploadedData = Microting.ItemsPlanningBase.Infrastructure.Data.Entities.UploadedData;
 
 namespace Microting.ItemsPlanningBase.Tests
 {
@@ -17,17 +17,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Create_DoesCreate()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
 
@@ -36,7 +35,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -46,7 +45,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -57,7 +56,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
 
-            UploadedData uploadedData = new UploadedData
+            var uploadedData = new UploadedData
             {
                 PlanningCaseId = itemCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
@@ -70,9 +69,9 @@ namespace Microting.ItemsPlanningBase.Tests
             //Act
             await uploadedData.Create(DbContext);
 
-            UploadedData dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
-            List<UploadedData> uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
-            List<UploadedDataVersion> uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
+            var dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
+            var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
+            var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
             
@@ -92,17 +91,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Update_DoesUpdate()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -110,7 +108,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -120,7 +118,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -131,7 +129,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             
-            UploadedData uploadedData = new UploadedData
+            var uploadedData = new UploadedData
             {
                 PlanningCaseId = itemCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
@@ -143,12 +141,12 @@ namespace Microting.ItemsPlanningBase.Tests
             };
             await uploadedData.Create(DbContext);
 
-            string newCheckSum = Guid.NewGuid().ToString();
-            string newExtension = Guid.NewGuid().ToString();
-            string newCurrentFile = Guid.NewGuid().ToString();
-            string newUploaderType = Guid.NewGuid().ToString();
-            string newFileLocation = Guid.NewGuid().ToString();
-            string newFileName = Guid.NewGuid().ToString();
+            var newCheckSum = Guid.NewGuid().ToString();
+            var newExtension = Guid.NewGuid().ToString();
+            var newCurrentFile = Guid.NewGuid().ToString();
+            var newUploaderType = Guid.NewGuid().ToString();
+            var newFileLocation = Guid.NewGuid().ToString();
+            var newFileName = Guid.NewGuid().ToString();
 
             uploadedData.Checksum = newCheckSum;
             uploadedData.Extension = newExtension;
@@ -159,9 +157,9 @@ namespace Microting.ItemsPlanningBase.Tests
             //Act
             await uploadedData.Update(DbContext);
 
-            UploadedData dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
-            List<UploadedData> uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
-            List<UploadedDataVersion> uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
+            var dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
+            var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
+            var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
             
@@ -181,17 +179,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Delete_DoesDelete()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -199,7 +196,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -209,7 +206,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -220,7 +217,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Create(DbContext);
             
-            UploadedData uploadedData = new UploadedData
+            var uploadedData = new UploadedData
             {
                 PlanningCaseId = itemCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
@@ -235,9 +232,9 @@ namespace Microting.ItemsPlanningBase.Tests
             //Act
             await uploadedData.Delete(DbContext);
 
-            UploadedData dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
-            List<UploadedData> uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
-            List<UploadedDataVersion> uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
+            var dbUploadedData = DbContext.UploadedDatas.AsNoTracking().First();
+            var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
+            var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
             

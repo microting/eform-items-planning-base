@@ -27,7 +27,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
-using Microting.eFormApi.BasePn.Infrastructure.Consts;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -40,17 +39,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Save_DoesSave()
         {
             // Arrange
-            Planning planning = new Planning();
+            var planning = new Planning();
 
             await planning.Create(DbContext);
             
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = planning.Id
+                    Planning = planning
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -58,7 +56,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -68,7 +66,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -80,8 +78,8 @@ namespace Microting.ItemsPlanningBase.Tests
             // Act
             await itemCase.Create(DbContext);
 
-            List<PlanningCase> itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            List<PlanningCaseVersion> itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+            var itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
+            var itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
             
             // Assert
             Assert.AreEqual(1, itemCases.Count);
@@ -109,17 +107,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Update_DoesUpdate()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -127,7 +124,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -137,7 +134,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -153,8 +150,8 @@ namespace Microting.ItemsPlanningBase.Tests
             itemCase.Status = 77;
             await itemCase.Update(DbContext);
 
-            List<PlanningCase> itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            List<PlanningCaseVersion> itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+            var itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
+            var itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
             
             // Assert
             Assert.AreEqual(1, itemCases.Count);
@@ -191,17 +188,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task ItemCase_Delete_DoesDelete()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -209,7 +205,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -219,7 +215,7 @@ namespace Microting.ItemsPlanningBase.Tests
             
             await item.Create(DbContext);
             
-            PlanningCase itemCase = new PlanningCase
+            var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
@@ -234,8 +230,8 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemCase.Delete(DbContext);
 
-            List<PlanningCase> itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            List<PlanningCaseVersion> itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+            var itemCases = DbContext.PlanningCases.AsNoTracking().ToList();
+            var itemCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
             
             // Assert
             Assert.AreEqual(1, itemCases.Count);
