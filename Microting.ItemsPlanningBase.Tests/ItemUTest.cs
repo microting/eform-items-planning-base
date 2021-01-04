@@ -27,6 +27,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
+using Microting.eForm.Infrastructure.Data.Entities;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -48,6 +49,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
+                    Language = new Language()
+                    {
+                        LanguageCode = "da", Name = "Danish"
+                    },
                     Planning = itemList
                 }
             };
@@ -125,6 +130,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
+                    Language = new Language()
+                    {
+                        LanguageCode = "da", Name = "Danish"
+                    },
                     Planning = itemList
                 }
             };
@@ -223,6 +232,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
+                    Language = new Language()
+                    {
+                        LanguageCode = "da", Name = "Danish"
+                    },
                     Planning = itemList
                 }
             };

@@ -67,6 +67,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
+                    Language = new Language()
+                    {
+                        LanguageCode = "da", Name = "Danish"
+                    },
                     Planning = planning
                 }
             };
@@ -155,6 +159,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
+                    Language = new Language()
+                    {
+                        LanguageCode = "da", Name = "Danish"
+                    },
                     Planning = planning
                 }
             };
