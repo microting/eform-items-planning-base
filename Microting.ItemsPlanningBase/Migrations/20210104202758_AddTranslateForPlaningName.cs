@@ -47,8 +47,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                     UpdatedByUserId = table.Column<int>(nullable: false),
                     Version = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    LanguageId = table.Column<int>(nullable: true),
-                    PlanningId = table.Column<int>(nullable: true)
+                    LanguageId = table.Column<int>(nullable: false),
+                    PlanningId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,13 +58,13 @@ namespace Microting.ItemsPlanningBase.Migrations
                         column: x => x.LanguageId,
                         principalTable: "Language",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PlanningNameTranslations_Plannings_PlanningId",
                         column: x => x.PlanningId,
                         principalTable: "Plannings",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,9 +80,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                     UpdatedByUserId = table.Column<int>(nullable: false),
                     Version = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    LanguageId = table.Column<int>(nullable: true),
-                    PlanningId = table.Column<int>(nullable: true),
-                    PlanningNameTranslationsId = table.Column<int>(nullable: true)
+                    LanguageId = table.Column<int>(nullable: false),
+                    PlanningId = table.Column<int>(nullable: false),
+                    PlanningNameTranslationsId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,19 +92,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                         column: x => x.LanguageId,
                         principalTable: "Language",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PlanningNameTranslationsVersions_Plannings_PlanningId",
-                        column: x => x.PlanningId,
-                        principalTable: "Plannings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PlanningNameTranslationsVersions_PlanningNameTranslations_Pl~",
-                        column: x => x.PlanningNameTranslationsId,
-                        principalTable: "PlanningNameTranslations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -121,25 +109,15 @@ namespace Microting.ItemsPlanningBase.Migrations
                 name: "IX_PlanningNameTranslationsVersions_LanguageId",
                 table: "PlanningNameTranslationsVersions",
                 column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanningNameTranslationsVersions_PlanningId",
-                table: "PlanningNameTranslationsVersions",
-                column: "PlanningId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanningNameTranslationsVersions_PlanningNameTranslationsId",
-                table: "PlanningNameTranslationsVersions",
-                column: "PlanningNameTranslationsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlanningNameTranslationsVersions");
+                name: "PlanningNameTranslations");
 
             migrationBuilder.DropTable(
-                name: "PlanningNameTranslations");
+                name: "PlanningNameTranslationsVersions");
 
             migrationBuilder.DropTable(
                 name: "Language");

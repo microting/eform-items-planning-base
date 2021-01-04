@@ -9,7 +9,7 @@ using Microting.ItemsPlanningBase.Infrastructure.Data;
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    [Migration("20210104011544_AddTranslateForPlaningName")]
+    [Migration("20210104202758_AddTranslateForPlaningName")]
     partial class AddTranslateForPlaningName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -657,13 +657,13 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("CreatedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LanguageId")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("PlanningId")
+                    b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -700,16 +700,16 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("CreatedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LanguageId")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("PlanningId")
+                    b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlanningNameTranslationsId")
+                    b.Property<int>("PlanningNameTranslationsId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -728,10 +728,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
-
-                    b.HasIndex("PlanningId");
-
-                    b.HasIndex("PlanningNameTranslationsId");
 
                     b.ToTable("PlanningNameTranslationsVersions");
                 });
@@ -1422,26 +1418,24 @@ namespace Microting.ItemsPlanningBase.Migrations
                 {
                     b.HasOne("Microting.eForm.Infrastructure.Data.Entities.Language", "Language")
                         .WithMany()
-                        .HasForeignKey("LanguageId");
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Planning", "Planning")
                         .WithMany("NameTranslations")
-                        .HasForeignKey("PlanningId");
+                        .HasForeignKey("PlanningId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslationsVersion", b =>
                 {
                     b.HasOne("Microting.eForm.Infrastructure.Data.Entities.Language", "Language")
                         .WithMany()
-                        .HasForeignKey("LanguageId");
-
-                    b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Planning", "Planning")
-                        .WithMany()
-                        .HasForeignKey("PlanningId");
-
-                    b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslations", "PlanningNameTranslations")
-                        .WithMany()
-                        .HasForeignKey("PlanningNameTranslationsId");
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningSite", b =>
