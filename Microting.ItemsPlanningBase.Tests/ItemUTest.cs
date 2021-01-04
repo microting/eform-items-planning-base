@@ -27,7 +27,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
-using Microting.eFormApi.BasePn.Infrastructure.Consts;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -40,17 +39,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task Item_Save_DoesSave()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -58,7 +56,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -76,8 +74,8 @@ namespace Microting.ItemsPlanningBase.Tests
             // Act
             await item.Create(DbContext);
 
-            List<Item> items = DbContext.Items.AsNoTracking().ToList();
-            List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
+            var items = DbContext.Items.AsNoTracking().ToList();
+            var itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
             
             // Assert
             Assert.AreEqual(1, items.Count);
@@ -118,17 +116,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task Item_Update_DoesUpdate()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -136,7 +133,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -155,12 +152,12 @@ namespace Microting.ItemsPlanningBase.Tests
             // Act
             // item = await DbContext.Items.AsNoTracking().FirstOrDefaultAsync();
 
-            string oldName = item.Name;
+            var oldName = item.Name;
             item.Name = "hello";
             await item.Update(DbContext);
             
-            List<Item> items = DbContext.Items.AsNoTracking().ToList();
-            List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
+            var items = DbContext.Items.AsNoTracking().ToList();
+            var itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
 
             // Assert
             Assert.AreEqual(1, items.Count);
@@ -217,17 +214,16 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task Item_Delete_DoesDelete()
         {
             // Arrange
-            Planning itemList = new Planning();
+            var itemList = new Planning();
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlaningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslations>()
             {
-                new PlaningNameTranslations()
+                new PlanningNameTranslations()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    LanguageId = 1,
-                    PlaningId = itemList.Id
+                    Planning = itemList
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -235,7 +231,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            Item item = new Item
+            var item = new Item
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
@@ -257,8 +253,8 @@ namespace Microting.ItemsPlanningBase.Tests
             await item.Delete(DbContext);
             
             
-            List<Item> items = DbContext.Items.AsNoTracking().ToList();
-            List<ItemVersion> itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
+            var items = DbContext.Items.AsNoTracking().ToList();
+            var itemVersions = DbContext.ItemVersions.AsNoTracking().ToList();
 
             // Assert
             Assert.AreEqual(1, items.Count);

@@ -1,9 +1,4 @@
-﻿using Microting.eForm.Infrastructure.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+﻿namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
     public class PlanningsTags : PnBase
     {
