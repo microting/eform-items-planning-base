@@ -22,9 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Data.Entities;
 using Microting.eFormApi.BasePn.Abstractions;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Entities;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+using UploadedData = Microting.ItemsPlanningBase.Infrastructure.Data.Entities.UploadedData;
+using UploadedDataVersion = Microting.ItemsPlanningBase.Infrastructure.Data.Entities.UploadedDataVersion;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data
 {
@@ -59,12 +62,23 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<PluginPermission> PluginPermissions { get; set; }
         public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
         public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
-        public DbSet<PlanningNameTranslations> PlanningNameTranslations { get; set; }
-        public DbSet<PlanningNameTranslationsVersion> PlanningNameTranslationsVersions { get; set; }
+        public DbSet<PlanningNameTranslation> PlanningNameTranslation { get; set; }
+        public DbSet<PlanningNameTranslationVersion> PlanningNameTranslationVersions { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
+                .WithMany()
+                .HasForeignKey(x => x.LanguageId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Planning)
+                .WithMany(x => x.NameTranslations)
+                .HasForeignKey(x => x.PlanningId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //modelBuilder.Entity<PluginGroupPermissionVersion>()
             //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)

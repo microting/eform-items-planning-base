@@ -44,9 +44,9 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await planning.Create(DbContext);
             
-            var commonTranslationModels = new List<PlanningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()
@@ -116,9 +116,9 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlanningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()
@@ -201,9 +201,9 @@ namespace Microting.ItemsPlanningBase.Tests
 
             await itemList.Create(DbContext);
 
-            var commonTranslationModels = new List<PlanningNameTranslations>()
+            var commonTranslationModels = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()

@@ -643,7 +643,7 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.ToTable("PlanningCaseVersions");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslations", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -659,7 +659,8 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
 
                     b.Property<int>("PlanningId")
                         .HasColumnType("int");
@@ -683,10 +684,10 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasIndex("PlanningId");
 
-                    b.ToTable("PlanningNameTranslations");
+                    b.ToTable("PlanningNameTranslation");
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslationsVersion", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslationVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -702,12 +703,13 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
 
                     b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlanningNameTranslationsId")
+                    b.Property<int>("PlanningNameTranslationId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -727,7 +729,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("PlanningNameTranslationsVersions");
+                    b.HasIndex("PlanningNameTranslationId");
+
+                    b.ToTable("PlanningNameTranslationVersions");
                 });
 
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningSite", b =>
@@ -1200,7 +1204,7 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginConfigurationValue", b =>
@@ -1412,26 +1416,32 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslations", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslation", b =>
                 {
                     b.HasOne("Microting.eForm.Infrastructure.Data.Entities.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Planning", "Planning")
                         .WithMany("NameTranslations")
                         .HasForeignKey("PlanningId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslationsVersion", b =>
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslationVersion", b =>
                 {
                     b.HasOne("Microting.eForm.Infrastructure.Data.Entities.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslation", "PlanningNameTranslation")
+                        .WithMany()
+                        .HasForeignKey("PlanningNameTranslationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

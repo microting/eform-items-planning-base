@@ -30,8 +30,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
     public class Planning : PnBase
     {
-        public virtual List<PlanningNameTranslations> NameTranslations { get; set; }
-            = new List<PlanningNameTranslations>();
+        public virtual List<PlanningNameTranslation> NameTranslations { get; set; }
+            = new List<PlanningNameTranslation>();
         
         public string Description { get; set; }
 
