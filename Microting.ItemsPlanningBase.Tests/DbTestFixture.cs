@@ -103,8 +103,8 @@ namespace Microting.ItemsPlanningBase.Tests
             modelNames.Add("UploadedDatas");
             modelNames.Add("PlanningCaseSites");
             modelNames.Add("PlanningCaseSiteVersions");
-            modelNames.Add("PlanningNameTranslations");
-            modelNames.Add("PlanningNameTranslationsVersions");
+            modelNames.Add("PlanningNameTranslation");
+            modelNames.Add("PlanningNameTranslationVersions");
             modelNames.Add("Language");
 
             foreach (var modelName in modelNames)

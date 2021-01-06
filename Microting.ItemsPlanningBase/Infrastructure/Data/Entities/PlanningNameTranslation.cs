@@ -22,25 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
-
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Microting.eForm.Infrastructure.Data.Entities;
 
-    public class PlanningNameTranslations : PnBase
+    public class PlanningNameTranslation : PnBase
     {
+        [StringLength(250)]
         public string Name { get; set; }
 
         public int LanguageId { get; set; }
 
-        [ForeignKey("LanguageId")]
         public virtual Language Language { get; set; }
 
         public int PlanningId { get; set; }
 
-        [ForeignKey("PlanningId")]
         public virtual Planning Planning { get; set; }
 
     }

@@ -62,9 +62,9 @@ namespace Microting.ItemsPlanningBase.Tests
             // Act
             await planning.Create(DbContext);
 
-            var planingNameTranslations = new List<PlanningNameTranslations>()
+            var planingNameTranslations = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()
@@ -83,16 +83,16 @@ namespace Microting.ItemsPlanningBase.Tests
                 .AsNoTracking()
                 .ToList();
 
-            var planingNameTranslationsList = DbContext.PlanningNameTranslations
+            var planingNameTranslationsList = DbContext.PlanningNameTranslation
                 .AsNoTracking()
                 .Where(x => x.Planning.Id == itemLists[0].Id)
                 .ToList();
 
             var itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
 
-            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationsVersions
+            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationVersions
                 .AsNoTracking()
-                .Where(x => x.PlanningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .Where(x => x.PlanningNameTranslationId == planingNameTranslationsList[0].Id)
                 .ToList();
 
             // Assert
@@ -154,9 +154,9 @@ namespace Microting.ItemsPlanningBase.Tests
 
             // Act
 
-            var planingNameTranslations = new List<PlanningNameTranslations>()
+            var planingNameTranslations = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()
@@ -178,14 +178,14 @@ namespace Microting.ItemsPlanningBase.Tests
             await planingNameTranslations[0].Update(DbContext);
 
             var itemLists = DbContext.Plannings.AsNoTracking().ToList();
-            var planingNameTranslationsList = DbContext.PlanningNameTranslations
+            var planingNameTranslationsList = DbContext.PlanningNameTranslation
                 .AsNoTracking()
                 .Where(x => x.Planning.Id == itemLists[0].Id)
                 .ToList();
             var itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
-            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationsVersions
+            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationVersions
                 .AsNoTracking()
-                .Where(x => x.PlanningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .Where(x => x.PlanningNameTranslationId == planingNameTranslationsList[0].Id)
                 .ToList();
 
             // Assert
@@ -247,9 +247,9 @@ namespace Microting.ItemsPlanningBase.Tests
             };
             await planning.Create(DbContext);
 
-            var planingNameTranslations = new List<PlanningNameTranslations>()
+            var planingNameTranslations = new List<PlanningNameTranslation>()
             {
-                new PlanningNameTranslations()
+                new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Language = new Language()
@@ -272,14 +272,14 @@ namespace Microting.ItemsPlanningBase.Tests
             await planning.Delete(DbContext);
             await planingNameTranslations[0].Delete(DbContext);
             var itemLists = DbContext.Plannings.AsNoTracking().ToList();
-            var planingNameTranslationsList = DbContext.PlanningNameTranslations
+            var planingNameTranslationsList = DbContext.PlanningNameTranslation
                 .AsNoTracking()
                 .Where(x => x.Planning.Id == itemLists[0].Id)
                 .ToList();
             var itemListVersions = DbContext.PlanningVersions.AsNoTracking().ToList();
-            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationsVersions
+            var planingNameTranslationsListVersions = DbContext.PlanningNameTranslationVersions
                 .AsNoTracking()
-                .Where(x => x.PlanningNameTranslationsId == planingNameTranslationsList[0].Id)
+                .Where(x => x.PlanningNameTranslationId == planingNameTranslationsList[0].Id)
                 .ToList();
 
             // Assert
