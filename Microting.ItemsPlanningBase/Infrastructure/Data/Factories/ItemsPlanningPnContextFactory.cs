@@ -21,9 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
 {
@@ -33,8 +36,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
         {
             var defaultCs = "Server = localhost; port = 3306; Database = items-planning-pn; user = root; password = Qq1234567$;Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
-            optionsBuilder.UseMySql(args.Any() ? args[0]: defaultCs);
-            optionsBuilder.UseLazyLoadingProxies(true);
+
+            optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
+            {
+                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb);
+            });
+            //optionsBuilder.UseLazyLoadingProxies(true);
 
             return new ItemsPlanningPnDbContext(optionsBuilder.Options);
             // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
