@@ -40,23 +40,12 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = itemList.Id,
-            };
-            
-            await item.Create(DbContext);
-            
             var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id,
             };
 
             await itemCase.Create(DbContext);
@@ -117,23 +106,12 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = itemList.Id,
-            };
-            
-            await item.Create(DbContext);
-            
             var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id,
             };
 
             await itemCase.Create(DbContext);
@@ -208,24 +186,13 @@ namespace Microting.ItemsPlanningBase.Tests
             {
                 await translationModel.Create(DbContext);
             }
-            
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = itemList.Id,
-            };
-            
-            await item.Create(DbContext);
-            
+
             var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id,
             };
 
             await itemCase.Create(DbContext);

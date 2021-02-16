@@ -22,10 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System;
+
     public class PlanningCase : PnBase
     {
         public int MicrotingSdkSiteId { get; set; }
@@ -45,9 +45,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string Comment { get; set; }
         
         public string Location { get; set; }
-
-        public int ItemId { get; set; }
-        public virtual Item Item { get; set; }
         
         public string SdkFieldValue1 { get; set; }
         

@@ -61,15 +61,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = planning.Id,
-            };
-            
-            await item.Create(DbContext);
             
             var itemCase = new PlanningCase
             {
@@ -77,7 +68,6 @@ namespace Microting.ItemsPlanningBase.Tests
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id,
             };
 
             // Act
@@ -93,7 +83,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
             Assert.AreEqual(itemCase.Status, itemCases[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCases[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCases[0].Id);
             Assert.AreEqual(1, itemCases[0].Version);
@@ -102,7 +91,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
             Assert.AreEqual(itemCase.Status, itemCaseVersions[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCaseVersions[0].PlanningCaseId);
             Assert.AreEqual(1, itemCaseVersions[0].Version);
@@ -133,23 +121,12 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = itemList.Id
-            };
-            
-            await item.Create(DbContext);
-            
             var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id
             };
 
             await itemCase.Create(DbContext);
@@ -169,7 +146,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
             Assert.AreEqual(77, itemCases[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCases[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCases[0].Id);
             Assert.AreEqual(2, itemCases[0].Version);
@@ -178,7 +154,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
             Assert.AreEqual(66, itemCaseVersions[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCaseVersions[0].PlanningCaseId);
             Assert.AreEqual(1, itemCaseVersions[0].Version);
@@ -187,7 +162,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[1].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[1].MicrotingSdkeFormId);
             Assert.AreEqual(77, itemCaseVersions[1].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[1].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[1].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCaseVersions[1].PlanningCaseId);
             Assert.AreEqual(2, itemCaseVersions[1].Version);
@@ -218,23 +192,12 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            var item = new Item
-            {
-                Name = Guid.NewGuid().ToString(),
-                Description = Guid.NewGuid().ToString(),
-                Enabled = true,
-                PlanningId = itemList.Id
-            };
-            
-            await item.Create(DbContext);
-            
             var itemCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
-                ItemId = item.Id
             };
 
             await itemCase.Create(DbContext);
@@ -253,7 +216,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCases[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCases[0].MicrotingSdkeFormId);
             Assert.AreEqual(itemCase.Status, itemCases[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCases[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemCases[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCases[0].Id);
             Assert.AreEqual(2, itemCases[0].Version);
@@ -262,7 +224,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[0].MicrotingSdkeFormId);
             Assert.AreEqual(itemCase.Status, itemCaseVersions[0].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[0].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Created, itemCaseVersions[0].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCaseVersions[0].PlanningCaseId);
             Assert.AreEqual(1, itemCaseVersions[0].Version);
@@ -271,7 +232,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(itemCase.MicrotingSdkCaseId, itemCaseVersions[1].MicrotingSdkCaseId);
             Assert.AreEqual(itemCase.MicrotingSdkeFormId, itemCaseVersions[1].MicrotingSdkeFormId);
             Assert.AreEqual(itemCase.Status, itemCaseVersions[1].Status);
-            Assert.AreEqual(itemCase.ItemId, itemCaseVersions[1].ItemId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, itemCaseVersions[1].WorkflowState);
             Assert.AreEqual(itemCase.Id, itemCaseVersions[1].PlanningCaseId);
             Assert.AreEqual(2, itemCaseVersions[1].Version);

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -67,8 +67,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool LabelEnabled { get; set; }
         
         public bool DescriptionEnabled { get; set; }
-        
-        public bool ItemNumberEnabled { get; set; }
+
+        public bool PlanningNumberEnabled { get; set; }
         
         public bool LocationCodeEnabled { get; set; }
         
@@ -79,6 +79,15 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool NumberOfImagesEnabled { get; set; }
 
         public string SdkFolderName { get; set; }
+
         public string SdkParentFolderName { get; set; }
+
+        public string PlanningNumber { get; set; }
+
+        public string LocationCode { get; set; }
+
+        public string BuildYear { get; set; }
+
+        public string Type { get; set; }
     }
 }
