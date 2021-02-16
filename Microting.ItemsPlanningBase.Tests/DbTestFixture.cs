@@ -93,8 +93,6 @@ namespace Microting.ItemsPlanningBase.Tests
         private void ClearDb()
         {
             List<string> modelNames = new List<string>();
-            modelNames.Add("Items");
-            modelNames.Add("ItemVersions");
             modelNames.Add("PlanningCases");
             modelNames.Add("PlanningCaseVersions");
             modelNames.Add("Plannings");

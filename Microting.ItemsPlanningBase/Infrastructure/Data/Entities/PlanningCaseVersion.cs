@@ -22,12 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
-
 namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 {
+    using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+
     public class PlanningCaseVersion : BaseEntity
     {
         public int MicrotingSdkSiteId { get; set; }
@@ -47,8 +47,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string Comment { get; set; }
         
         public string Location { get; set; }
-                
-        public int ItemId { get; set; }
 
         [ForeignKey("PlanningCase")]
         public int PlanningCaseId { get; set; }
