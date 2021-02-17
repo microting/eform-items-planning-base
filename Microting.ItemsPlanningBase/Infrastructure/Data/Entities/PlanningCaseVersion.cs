@@ -50,7 +50,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         [ForeignKey("PlanningCase")]
         public int PlanningCaseId { get; set; }
-        
+
+        [ForeignKey("Planning")]
+        public int PlanningId { get; set; }
+
         public string SdkFieldValue1 { get; set; }
         
         public string SdkFieldValue2 { get; set; }

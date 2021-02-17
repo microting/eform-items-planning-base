@@ -94,5 +94,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public virtual List<PlanningsTags> PlanningsTags { get; set; }
             = new List<PlanningsTags>();
+
+        public virtual List<PlanningCase> PlanningCases { get; set; }
+            = new List<PlanningCase>();
     }
 }

@@ -48,7 +48,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         
         public string Location { get; set; }
                 
-        public int ItemId { get; set; }
+        public int PlanningId { get; set; }
 
         [ForeignKey("PlanningCaseSite")]
         public int PlanningCaseSiteId { get; set; }

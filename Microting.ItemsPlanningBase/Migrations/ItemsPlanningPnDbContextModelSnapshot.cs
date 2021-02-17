@@ -173,6 +173,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<int>("NumberOfImages")
                         .HasColumnType("int");
 
+                    b.Property<int>("PlanningId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SdkFieldValue1")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -221,6 +224,8 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PlanningId");
+
                     b.ToTable("PlanningCases");
                 });
 
@@ -248,9 +253,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<string>("FieldStatus")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -270,6 +272,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PlanningCaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
                     b.Property<string>("SdkFieldValue1")
@@ -347,9 +352,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<string>("FieldStatus")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -372,6 +374,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PlanningCaseSiteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
                     b.Property<string>("SdkFieldValue1")
@@ -468,6 +473,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PlanningCaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlanningId")
                         .HasColumnType("int");
 
                     b.Property<string>("SdkFieldValue1")
@@ -1286,6 +1294,15 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PluginPermissions");
+                });
+
+            modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningCase", b =>
+                {
+                    b.HasOne("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.Planning", "Planning")
+                        .WithMany("PlanningCases")
+                        .HasForeignKey("PlanningId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microting.ItemsPlanningBase.Infrastructure.Data.Entities.PlanningNameTranslation", b =>
