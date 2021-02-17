@@ -79,11 +79,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<PlanningCase>().HasOne(x => x.Planning)
-                .WithMany()
-                .HasForeignKey(x => x.PlanningId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<PlanningCase>().HasOne(x => x.Planning)
                 .WithMany(x => x.PlanningCases)
                 .HasForeignKey(x => x.PlanningId)
                 .OnDelete(DeleteBehavior.Restrict);
