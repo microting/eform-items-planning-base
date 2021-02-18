@@ -18,9 +18,9 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Create_DoesCreate()
         {
             // Arrange
-            var itemList = new Planning();
+            var planning = new Planning();
 
-            await itemList.Create(DbContext);
+            await planning.Create(DbContext);
 
             var commonTranslationModels = new List<PlanningNameTranslation>()
             {
@@ -31,7 +31,7 @@ namespace Microting.ItemsPlanningBase.Tests
                     {
                         LanguageCode = "da", Name = "Danish"
                     },
-                    Planning = itemList
+                    Planning = planning
                 }
             };
 
@@ -40,19 +40,20 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            var itemCase = new PlanningCase
+            var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
+                PlanningId = planning.Id,
             };
 
-            await itemCase.Create(DbContext);
+            await planningCase.Create(DbContext);
 
             var uploadedData = new UploadedData
             {
-                PlanningCaseId = itemCase.Id,
+                PlanningCaseId = planningCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
                 Extension = Guid.NewGuid().ToString(),
                 CurrentFile = Guid.NewGuid().ToString(),
@@ -85,9 +86,9 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Update_DoesUpdate()
         {
             // Arrange
-            var itemList = new Planning();
+            var planning = new Planning();
 
-            await itemList.Create(DbContext);
+            await planning.Create(DbContext);
 
             var commonTranslationModels = new List<PlanningNameTranslation>()
             {
@@ -98,7 +99,7 @@ namespace Microting.ItemsPlanningBase.Tests
                     {
                         LanguageCode = "da", Name = "Danish"
                     },
-                    Planning = itemList
+                    Planning = planning
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -106,19 +107,20 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
             
-            var itemCase = new PlanningCase
+            var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
+                PlanningId = planning.Id,
             };
 
-            await itemCase.Create(DbContext);
+            await planningCase.Create(DbContext);
             
             var uploadedData = new UploadedData
             {
-                PlanningCaseId = itemCase.Id,
+                PlanningCaseId = planningCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
                 Extension = Guid.NewGuid().ToString(),
                 CurrentFile = Guid.NewGuid().ToString(),
@@ -166,9 +168,9 @@ namespace Microting.ItemsPlanningBase.Tests
         public async Task UploadedData_Delete_DoesDelete()
         {
             // Arrange
-            var itemList = new Planning();
+            var planning = new Planning();
 
-            await itemList.Create(DbContext);
+            await planning.Create(DbContext);
 
             var commonTranslationModels = new List<PlanningNameTranslation>()
             {
@@ -179,7 +181,7 @@ namespace Microting.ItemsPlanningBase.Tests
                     {
                         LanguageCode = "da", Name = "Danish"
                     },
-                    Planning = itemList
+                    Planning = planning
                 }
             };
             foreach (var translationModel in commonTranslationModels)
@@ -187,19 +189,20 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            var itemCase = new PlanningCase
+            var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
                 MicrotingSdkCaseId = 34,
                 MicrotingSdkeFormId = 234,
                 Status = 66,
+                PlanningId = planning.Id,
             };
 
-            await itemCase.Create(DbContext);
+            await planningCase.Create(DbContext);
             
             var uploadedData = new UploadedData
             {
-                PlanningCaseId = itemCase.Id,
+                PlanningCaseId = planningCase.Id,
                 Checksum = Guid.NewGuid().ToString(),
                 Extension = Guid.NewGuid().ToString(),
                 CurrentFile = Guid.NewGuid().ToString(),

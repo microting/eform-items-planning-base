@@ -78,6 +78,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
                 .HasForeignKey(x => x.PlanningId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<PlanningCase>().HasOne(x => x.Planning)
+                .WithMany(x => x.PlanningCases)
+                .HasForeignKey(x => x.PlanningId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             //modelBuilder.Entity<PluginGroupPermissionVersion>()
             //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)
             //    .WithMany()

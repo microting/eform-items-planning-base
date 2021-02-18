@@ -37,7 +37,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string FieldStatus { get; set; }
 
         public int MicrotingSdkCaseId { get; set; }
-        
+
+        public int PlanningId { get; set; }
+
+        public virtual Planning Planning { get; set; }
+
         public DateTime? MicrotingSdkCaseDoneAt { get; set; }
         
         public int NumberOfImages { get; set; }

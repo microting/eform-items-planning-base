@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -53,27 +53,86 @@ namespace Microting.ItemsPlanningBase.Migrations
                 table: "Plannings",
                 nullable: true);
 
-            migrationBuilder.Sql(@"UPDATE Plannings p
-                                   INNER JOIN Items i ON p.Id = i.PlanningId
-                                   SET p.PlanningNumber = i.ItemNumber;");
+            migrationBuilder.AddColumn<int>(
+                name: "PlanningId",
+                table: "PlanningCaseVersions",
+                nullable: false,
+                defaultValue: 0);
 
-            migrationBuilder.Sql(@"UPDATE PlanningVersions p
-                                   INNER JOIN ItemVersions i ON p.PlanningId = i.PlanningId
-                                   SET p.PlanningNumber = i.ItemNumber;");
-            
+            migrationBuilder.AddColumn<int>(
+                name: "PlanningId",
+                table: "PlanningCaseSiteVersions",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "PlanningId",
+                table: "PlanningCaseSites",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "PlanningId",
+                table: "PlanningCases",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.DropForeignKey(
                 name: "FK_PlanningCases_Items_ItemId",
                 table: "PlanningCases");
+            
+            migrationBuilder.DropIndex(
+                name: "IX_PlanningCases_ItemId",
+                table: "PlanningCases");
+
+            migrationBuilder.Sql(@"UPDATE Plannings p
+                                   INNER JOIN Items i ON p.Id = i.PlanningId 
+                                   SET p.PlanningNumber = i.ItemNumber,
+                                   p.BuildYear = i.BuildYear,
+                                   p.LocationCode = i.LocationCode,
+                                   p.Type  = i.Type;");
+
+            migrationBuilder.Sql(@"UPDATE PlanningVersions p
+                                   INNER JOIN ItemVersions i ON p.PlanningId = i.PlanningId
+                                   SET p.PlanningNumber = i.ItemNumber,
+                                   p.BuildYear = i.BuildYear,
+                                   p.LocationCode = i.LocationCode,
+                                   p.Type  = i.Type;");
+
+            migrationBuilder.Sql(@"UPDATE PlanningCases p
+                                   INNER JOIN Items i ON p.ItemId = i.Id
+                                   SET p.PlanningId = i.PlanningId;");
+
+            migrationBuilder.Sql(@"UPDATE PlanningCaseVersions p
+                                   INNER JOIN ItemVersions i ON p.ItemId = i.Id
+                                   SET p.PlanningId = i.PlanningId;");
+
+            migrationBuilder.Sql(@"UPDATE PlanningCaseSites p
+                                   INNER JOIN Items i ON p.ItemId = i.Id
+                                   SET p.PlanningId = i.PlanningId;");
+
+            migrationBuilder.Sql(@"UPDATE PlanningCaseSiteVersions p
+                                   INNER JOIN ItemVersions i ON p.ItemId = i.Id
+                                   SET p.PlanningId = i.PlanningId;");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlanningCases_PlanningId",
+                table: "PlanningCases",
+                column: "PlanningId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_PlanningCases_Plannings_PlanningId",
+                table: "PlanningCases",
+                column: "PlanningId",
+                principalTable: "Plannings",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.DropTable(
                 name: "Items");
 
             migrationBuilder.DropTable(
                 name: "ItemVersions");
-
-            migrationBuilder.DropIndex(
-                name: "IX_PlanningCases_ItemId",
-                table: "PlanningCases");
 
             migrationBuilder.RenameColumn(
                 name: "ItemNumberEnabled",
@@ -86,6 +145,14 @@ namespace Microting.ItemsPlanningBase.Migrations
 
             migrationBuilder.DropColumn(
                 name: "ItemId",
+                table: "PlanningCaseSiteVersions");
+
+            migrationBuilder.DropColumn(
+                name: "ItemId",
+                table: "PlanningCaseSites");
+
+            migrationBuilder.DropColumn(
+                name: "ItemId",
                 table: "PlanningCases");
 
         }
@@ -95,6 +162,20 @@ namespace Microting.ItemsPlanningBase.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "ItemId",
                 table: "PlanningCaseVersions",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "ItemId",
+                table: "PlanningCaseSiteVersions",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "ItemId",
+                table: "PlanningCaseSites",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -169,6 +250,44 @@ namespace Microting.ItemsPlanningBase.Migrations
                     table.PrimaryKey("PK_ItemVersions", x => x.Id);
                 });
 
+            migrationBuilder.DropForeignKey(
+                name: "FK_PlanningCases_Plannings_PlanningId",
+                table: "PlanningCases");
+
+            migrationBuilder.DropIndex(
+                name: "IX_PlanningCases_PlanningId",
+                table: "PlanningCases");
+
+            migrationBuilder.Sql(@"UPDATE Items i
+                                   INNER JOIN Plannings p ON p.Id = i.PlanningId
+                                   SET i.ItemNumber = p.PlanningNumber,
+                                   p.BuildYear = i.BuildYear,
+                                   p.LocationCode = i.LocationCode,
+                                   p.Type  = i.Type;");
+
+            migrationBuilder.Sql(@"UPDATE ItemVersions i
+                                   INNER JOIN PlanningVersions p ON p.PlanningId = i.PlanningId
+                                   SET i.ItemNumber = p.PlanningNumber;");
+
+            migrationBuilder.Sql(@"UPDATE Items i
+                                   INNER JOIN PlanningCases p ON p.ItemId = i.Id
+                                   SET i.PlanningId = p.PlanningId,
+                                   i.BuildYear = p.BuildYear,
+                                   i.LocationCode = p.LocationCode,
+                                   i.Type = p.Type;");
+
+            migrationBuilder.Sql(@"UPDATE ItemVersions i
+                                   INNER JOIN PlanningCaseVersions p ON p.ItemId = i.Id
+                                   SET i.PlanningId = p.PlanningId;");
+
+            migrationBuilder.Sql(@"UPDATE Items i
+                                   INNER JOIN PlanningCaseSites p ON p.ItemId = i.Id
+                                   SET i.PlanningId = p.PlanningId;");
+
+            migrationBuilder.Sql(@"UPDATE ItemVersions i
+                                   INNER JOIN PlanningCaseSiteVersions p ON p.ItemId = i.Id
+                                   SET i.PlanningId = p.PlanningId;");
+
             migrationBuilder.CreateIndex(
                 name: "IX_PlanningCases_ItemId",
                 table: "PlanningCases",
@@ -187,14 +306,6 @@ namespace Microting.ItemsPlanningBase.Migrations
                 principalTable: "Items",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.Sql(@"UPDATE Items i
-                                   INNER JOIN Plannings p ON p.Id = i.PlanningId
-                                   SET i.ItemNumber = p.PlanningNumber;");
-
-            migrationBuilder.Sql(@"UPDATE ItemVersions i
-                                   INNER JOIN PlanningVersions p ON p.PlanningId = i.PlanningId
-                                   SET i.ItemNumber = p.PlanningNumber;");
 
             migrationBuilder.DropColumn(
                 name: "BuildYear",
@@ -238,6 +349,22 @@ namespace Microting.ItemsPlanningBase.Migrations
                 name: "Type",
                 table: "Plannings");
             
+            migrationBuilder.DropColumn(
+                name: "PlanningId",
+                table: "PlanningCaseVersions");
+
+            migrationBuilder.DropColumn(
+                name: "PlanningId",
+                table: "PlanningCaseSiteVersions");
+
+            migrationBuilder.DropColumn(
+                name: "PlanningId",
+                table: "PlanningCaseSites");
+
+            migrationBuilder.DropColumn(
+                name: "PlanningId",
+                table: "PlanningCases");
+
         }
     }
 }
