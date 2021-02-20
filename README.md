@@ -1,5 +1,8 @@
 # eform-items-planning-base
-![.NET Core](https://github.com/microting/eform-items-planning-base/workflows/.NET%20Core/badge.svg)
+[![.NET Version release](https://github.com/microting/eform-items-planning-base/actions/workflows/dotnet-core.yml/badge.svg)](https://github.com/microting/eform-items-planning-base/actions/workflows/dotnet-core.yml)
+[![NuGet Badge](https://buildstats.info/nuget/Microting.ItemsPlanningBase)](https://www.nuget.org/packages/Microting.ItemsPlanningBase/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/44c48253c4e1ce6691fc/maintainability)](https://codeclimate.com/github/microting/eform-items-planning-base/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f39b79548fdb4bbd86ac4c953de91645)](https://www.codacy.com/gh/microting/eform-items-planning-base/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=microting/eform-items-planning-base&amp;utm_campaign=Badge_Grade)
 
 ## NOTICE! this is not a standalone project and needs to be used with eForm Angular Frontend.
 
