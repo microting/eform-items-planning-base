@@ -39,7 +39,6 @@ namespace Microting.ItemsPlanningBase.Tests
         protected ItemsPlanningPnDbContext DbContext;
         private string _connectionString;
 
-
         private void GetContext(string connectionStr)
         {
             ItemsPlanningPnContextFactory contextFactory = new ItemsPlanningPnContextFactory();
@@ -52,19 +51,10 @@ namespace Microting.ItemsPlanningBase.Tests
         [SetUp]
         public void Setup()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-              //  _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=items-planning-pn-tests;Integrated Security=true";
-                _connectionString = @"Data Source=.\SQLEXPRESS;Database=123_iptest;Integrated Security=True";
-            }
-            else
-            {
-                _connectionString =
-                    @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
-            }
+            _connectionString =
+                @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
 
             GetContext(_connectionString);
-
 
             DbContext.Database.SetCommandTimeout(300);
 
@@ -92,50 +82,55 @@ namespace Microting.ItemsPlanningBase.Tests
 
         private void ClearDb()
         {
-            List<string> modelNames = new List<string>();
-            modelNames.Add("PlanningCases");
-            modelNames.Add("PlanningCaseVersions");
-            modelNames.Add("Plannings");
-            modelNames.Add("PlanningVersions");
-            modelNames.Add("UploadedDataVersions");
-            modelNames.Add("UploadedDatas");
-            modelNames.Add("PlanningCaseSites");
-            modelNames.Add("PlanningCaseSiteVersions");
-            modelNames.Add("PlanningNameTranslation");
-            modelNames.Add("PlanningNameTranslationVersions");
-            modelNames.Add("Language");
+            List<string> modelNames = new List<string>
+            {
+                "PlanningCases",
+                "PlanningCaseVersions",
+                "Plannings",
+                "PlanningVersions",
+                "UploadedDataVersions",
+                "UploadedDatas",
+                "PlanningCaseSites",
+                "PlanningCaseSiteVersions",
+                "PlanningNameTranslation",
+                "PlanningNameTranslationVersions",
+                "Language"
+            };
+
+            bool firstRunNotDone = true;
 
             foreach (var modelName in modelNames)
             {
                 try
                 {
-                    string sqlCmd;
-                    if (DbContext.Database.IsMySql())
+                    if (firstRunNotDone)
                     {
-                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`";
+                        DbContext.Database.ExecuteSqlRaw(
+                            $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`");
                     }
-                    else
-                    {
-                        sqlCmd = $"DELETE FROM [{modelName}]";
-                    }
-
-                    DbContext.Database.ExecuteSqlCommand(sqlCmd);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    if (ex.Message == "Unknown database 'items-planning-pn-tests'")
+                    {
+                        firstRunNotDone = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
         }
 
-        private string path;
+        private string _path;
 
         private void ClearFile()
         {
-            path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
-            path = System.IO.Path.GetDirectoryName(path).Replace(@"file:\", "");
+            _path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            _path = Path.GetDirectoryName(_path)?.Replace(@"file:\", "");
 
-            string picturePath = path + @"\output\dataFolder\picture\Deleted";
+            string picturePath = _path + @"\output\dataFolder\picture\Deleted";
 
             DirectoryInfo diPic = new DirectoryInfo(picturePath);
 
@@ -148,6 +143,7 @@ namespace Microting.ItemsPlanningBase.Tests
             }
             catch
             {
+                // ignored
             }
         }
 
