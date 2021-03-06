@@ -89,7 +89,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public string SdkParentFolderName { get; set; }
 
-        public int SdkFolderId { get; set; }
+        public int? SdkFolderId { get; set; }
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
