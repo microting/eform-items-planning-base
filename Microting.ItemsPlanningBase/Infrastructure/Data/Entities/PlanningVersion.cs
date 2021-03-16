@@ -48,6 +48,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public DateTime? NextExecutionTime { get; set; }
         
         public bool DoneInPeriod { get; set; }
+        
+        public bool PushMessageSent { get; set; }
 
         public DateTime StartDate { get; set; }
 
