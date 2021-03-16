@@ -44,6 +44,10 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int? DayOfMonth { get; set; }
 
         public DateTime? LastExecutedTime { get; set; }
+        
+        public DateTime? NextExecutionTime { get; set; }
+        
+        public bool DoneInPeriod { get; set; }
 
         public DateTime StartDate { get; set; }
 
