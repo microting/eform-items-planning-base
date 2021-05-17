@@ -6,7 +6,7 @@ if (( "$GIT_STATUS" > 0 )); then
 	cd Microting.ItemsPlanningBase
   CURRENT_NUMBER_OF_COMMITS=`git log --oneline | wc -l`
 
-	PACKAGES=('Microting.eForm' 'Microting.eFormApi.BasePn')
+	PACKAGES=('Microting.eForm' 'Microting.eFormApi.BasePn' 'Microsoft.EntityFrameworkCore.Design')
 	PROJECT_NAME='Microting.ItemsPlanningBase.csproj'
 	REPOSITORY='eform-items-planning-base'
 
