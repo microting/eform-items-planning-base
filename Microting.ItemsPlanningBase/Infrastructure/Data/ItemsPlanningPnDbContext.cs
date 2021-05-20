@@ -53,6 +53,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<PlanningTagVersion> PlanningTagVersions { get; set; }
         public DbSet<PlanningsTags> PlanningsTags { get; set; }
         public DbSet<PlanningsTagsVersion> PlanningsTagsVersions { get; set; }
+        public DbSet<PlanningNameTranslation> PlanningNameTranslation { get; set; }
+        public DbSet<PlanningNameTranslationVersion> PlanningNameTranslationVersions { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         // common tables
         public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
@@ -60,9 +63,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         public DbSet<PluginPermission> PluginPermissions { get; set; }
         public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
         public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
-        public DbSet<PlanningNameTranslation> PlanningNameTranslation { get; set; }
-        public DbSet<PlanningNameTranslationVersion> PlanningNameTranslationVersions { get; set; }
-        public DbSet<Language> Languages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
