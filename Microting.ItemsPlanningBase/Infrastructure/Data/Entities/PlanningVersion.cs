@@ -97,5 +97,9 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string Type { get; set; }
 
         public int? SdkFolderId { get; set; }
+
+        public int DaysBeforeRedeploymentPushMessage { get; set; }
+
+        public bool DaysBeforeRedeploymentPushMessageRepeat { get; set; }
     }
 }

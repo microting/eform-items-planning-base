@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2007 - 2019 Microting A/S
+Copyright (c) 2007 - 2021 Microting A/S
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,26 +22,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using Microsoft.EntityFrameworkCore;
-using Microting.ItemsPlanningBase.Infrastructure.Data;
-using Microting.ItemsPlanningBase.Infrastructure.Data.Factories;
-using NUnit.Framework;
 
 namespace Microting.ItemsPlanningBase.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using Microsoft.EntityFrameworkCore;
+    using Infrastructure.Data;
+    using Infrastructure.Data.Factories;
+    using NUnit.Framework;
     [TestFixture]
     public abstract class DbTestFixture
     {
         protected ItemsPlanningPnDbContext DbContext;
         private string _connectionString;
+        private string path;
+        
 
         private void GetContext(string connectionStr)
         {
-            ItemsPlanningPnContextFactory contextFactory = new ItemsPlanningPnContextFactory();
+            var contextFactory = new ItemsPlanningPnContextFactory();
             DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
 
             DbContext.Database.Migrate();
@@ -51,6 +52,7 @@ namespace Microting.ItemsPlanningBase.Tests
         [SetUp]
         public void Setup()
         {
+
             _connectionString =
                 @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
 
@@ -82,7 +84,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
         private void ClearDb()
         {
-            List<string> modelNames = new List<string>
+            var modelNames = new List<string>
             {
                 "PlanningCases",
                 "PlanningCaseVersions",
@@ -94,10 +96,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 "PlanningCaseSiteVersions",
                 "PlanningNameTranslation",
                 "PlanningNameTranslationVersions",
-                "Language"
+                "Languages"
             };
 
-            bool firstRunNotDone = true;
+            var firstRunNotDone = true;
 
             foreach (var modelName in modelNames)
             {
@@ -123,20 +125,18 @@ namespace Microting.ItemsPlanningBase.Tests
             }
         }
 
-        private string _path;
-
         private void ClearFile()
         {
-            _path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
-            _path = Path.GetDirectoryName(_path)?.Replace(@"file:\", "");
+            path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            path = Path.GetDirectoryName(path)?.Replace(@"file:\", "");
 
-            string picturePath = _path + @"\output\dataFolder\picture\Deleted";
+            var picturePath = path + @"\output\dataFolder\picture\Deleted";
 
-            DirectoryInfo diPic = new DirectoryInfo(picturePath);
+            var diPic = new DirectoryInfo(picturePath);
 
             try
             {
-                foreach (FileInfo file in diPic.GetFiles())
+                foreach (var file in diPic.GetFiles())
                 {
                     file.Delete();
                 }
