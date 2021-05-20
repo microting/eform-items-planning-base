@@ -84,7 +84,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
         private void ClearDb()
         {
-            List<string> modelNames = new List<string>
+            var modelNames = new List<string>
             {
                 "PlanningCases",
                 "PlanningCaseVersions",
@@ -96,10 +96,10 @@ namespace Microting.ItemsPlanningBase.Tests
                 "PlanningCaseSiteVersions",
                 "PlanningNameTranslation",
                 "PlanningNameTranslationVersions",
-                "Language"
+                "Languages"
             };
 
-            bool firstRunNotDone = true;
+            var firstRunNotDone = true;
 
             foreach (var modelName in modelNames)
             {
@@ -128,7 +128,7 @@ namespace Microting.ItemsPlanningBase.Tests
         private void ClearFile()
         {
             path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
-            path = Path.GetDirectoryName(path).Replace(@"file:\", "");
+            path = Path.GetDirectoryName(path)?.Replace(@"file:\", "");
 
             var picturePath = path + @"\output\dataFolder\picture\Deleted";
 
