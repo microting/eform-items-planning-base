@@ -9,8 +9,8 @@ using Microting.ItemsPlanningBase.Infrastructure.Data;
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    [Migration("20210217120024_MergeItemAndPlanning")]
-    partial class MergeItemAndPlanning
+    [Migration("20210306105112_AddinSdkFolderId")]
+    partial class AddinSdkFolderId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,6 +96,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("SdkFolderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SdkFolderName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -850,6 +853,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("SdkFolderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SdkFolderName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

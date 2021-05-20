@@ -1,17 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
-      <PackageReference Include="Microting.eForm" Version="4.3.15" />
-      <PackageReference Include="Microting.eFormApi.BasePn" Version="2.0.93" />
+      <PackageReference Include="Microting.eForm" Version="5.2.2" />
+      <PackageReference Include="Microting.eFormApi.BasePn" Version="3.0.12" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="images\icon.png">
+            <Pack>true</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 </Project>

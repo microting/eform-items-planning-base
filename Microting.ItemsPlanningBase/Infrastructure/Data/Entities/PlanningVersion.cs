@@ -34,48 +34,54 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string Description { get; set; }
 
         public int RepeatEvery { get; set; }
-        
+
         public RepeatType RepeatType { get; set; }
-        
+
         public DateTime? RepeatUntil { get; set; }
-        
+
         public DayOfWeek? DayOfWeek { get; set; }
-        
+
         public int? DayOfMonth { get; set; }
-        
+
         public DateTime? LastExecutedTime { get; set; }
+        
+        public DateTime? NextExecutionTime { get; set; }
+        
+        public bool DoneInPeriod { get; set; }
+        
+        public bool PushMessageSent { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public bool Enabled { get; set; }
-        
+
         public int RelatedEFormId { get; set; }
-        
+
         public string RelatedEFormName { get; set; }
 
         [ForeignKey("Planning")]
         public int PlanningId { get; set; }
 
         public bool DeployedAtEnabled { get; set; }
-        
+
         public bool DoneAtEnabled { get; set; }
-        
+
         public bool DoneByUserNameEnabled { get; set; }
-        
+
         public bool UploadedDataEnabled { get; set; }
-        
+
         public bool LabelEnabled { get; set; }
-        
+
         public bool DescriptionEnabled { get; set; }
 
         public bool PlanningNumberEnabled { get; set; }
-        
+
         public bool LocationCodeEnabled { get; set; }
-        
+
         public bool BuildYearEnabled { get; set; }
-        
+
         public bool TypeEnabled { get; set; }
-        
+
         public bool NumberOfImagesEnabled { get; set; }
 
         public string SdkFolderName { get; set; }
@@ -89,5 +95,7 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public string BuildYear { get; set; }
 
         public string Type { get; set; }
+
+        public int? SdkFolderId { get; set; }
     }
 }

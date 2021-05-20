@@ -8,13 +8,7 @@ namespace Microting.ItemsPlanningBase.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Name",
-                table: "PlanningVersions");
-
-            migrationBuilder.DropColumn(
-                name: "Name",
-                table: "Plannings");
+            
 
             migrationBuilder.CreateTable(
                 name: "Languages",
@@ -33,6 +27,10 @@ namespace Microting.ItemsPlanningBase.Migrations
                 {
                     table.PrimaryKey("PK_Languages", x => x.Id);
                 });
+
+            migrationBuilder.Sql("INSERT INTO Languages VALUES (1, 1, 'created', now(), now(), 'Danish', 'da')");
+            migrationBuilder.Sql("INSERT INTO Languages VALUES (2, 1, 'created', now(), now(), 'English', 'en-US')");
+            migrationBuilder.Sql("INSERT INTO Languages VALUES (3, 1, 'created', now(), now(), 'German', 'de-DE')");
 
             migrationBuilder.CreateTable(
                 name: "PlanningNameTranslation",
@@ -101,6 +99,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.Sql("INSERT INTO PlanningNameTranslation (Name, PlanningId, LanguageId, CreatedAt, UpdatedAt, Version, UpdatedByUserId, CreatedByUserId, WorkflowState) SELECT Name, Id, 1, CreatedAt, UpdatedAt, Version, UpdatedByUserId, CreatedByUserId, WorkflowState FROM Plannings;");
+            migrationBuilder.Sql("INSERT INTO PlanningNameTranslationVersions (Name, PlanningId, LanguageId, CreatedAt, UpdatedAt, Version, UpdatedByUserId, CreatedByUserId, WorkflowState, PlanningNameTranslationId) SELECT Name, PlanningId, 1, CreatedAt, UpdatedAt, Version, UpdatedByUserId, CreatedByUserId, WorkflowState, Id FROM PlanningNameTranslation;");
+
             migrationBuilder.CreateIndex(
                 name: "IX_PlanningNameTranslation_LanguageId",
                 table: "PlanningNameTranslation",
@@ -120,6 +121,14 @@ namespace Microting.ItemsPlanningBase.Migrations
                 name: "IX_PlanningNameTranslationVersions_PlanningNameTranslationId",
                 table: "PlanningNameTranslationVersions",
                 column: "PlanningNameTranslationId");
+            
+            migrationBuilder.DropColumn(
+                name: "Name",
+                table: "PlanningVersions");
+
+            migrationBuilder.DropColumn(
+                name: "Name",
+                table: "Plannings");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

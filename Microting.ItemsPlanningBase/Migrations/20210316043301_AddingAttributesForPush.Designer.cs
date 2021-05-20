@@ -9,8 +9,8 @@ using Microting.ItemsPlanningBase.Infrastructure.Data;
 namespace Microting.ItemsPlanningBase.Migrations
 {
     [DbContext(typeof(ItemsPlanningPnDbContext))]
-    [Migration("20210217120024_MergeItemAndPlanning")]
-    partial class MergeItemAndPlanning
+    [Migration("20210316043301_AddingAttributesForPush")]
+    partial class AddingAttributesForPush
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<bool>("DoneByUserNameEnabled")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("DoneInPeriod")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
@@ -72,6 +75,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("LocationCodeEnabled")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("NextExecutionTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("NumberOfImagesEnabled")
                         .HasColumnType("tinyint(1)");
@@ -96,6 +102,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("SdkFolderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SdkFolderName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -809,6 +818,9 @@ namespace Microting.ItemsPlanningBase.Migrations
                     b.Property<bool>("DoneByUserNameEnabled")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("DoneInPeriod")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
@@ -823,6 +835,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<bool>("LocationCodeEnabled")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("NextExecutionTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("NumberOfImagesEnabled")
                         .HasColumnType("tinyint(1)");
@@ -850,6 +865,9 @@ namespace Microting.ItemsPlanningBase.Migrations
 
                     b.Property<DateTime?>("RepeatUntil")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("SdkFolderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SdkFolderName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
