@@ -1,5 +1,21 @@
 # Changelog
 
+## [v3.0.20](https://github.com/microting/eform-items-planning-base/tree/v3.0.20) (2021-06-07)
+
+[Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.19...v3.0.20)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.18 to 3.0.19 [\#146](https://github.com/microting/eform-items-planning-base/issues/146)
+
+## [v3.0.19](https://github.com/microting/eform-items-planning-base/tree/v3.0.19) (2021-06-04)
+
+[Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.18...v3.0.19)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.17 to 3.0.18 [\#145](https://github.com/microting/eform-items-planning-base/issues/145)
+
 ## [v3.0.18](https://github.com/microting/eform-items-planning-base/tree/v3.0.18) (2021-06-03)
 
 [Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.17...v3.0.18)
@@ -61,6 +77,7 @@
 - Upgrade to GitHub-native Dependabot [\#100](https://github.com/microting/eform-items-planning-base/pull/100) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump NUnit from 3.13.1 to 3.13.2 [\#99](https://github.com/microting/eform-items-planning-base/pull/99) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump Microsoft.NET.Test.Sdk from 16.9.1 to 16.9.4 [\#55](https://github.com/microting/eform-items-planning-base/pull/55) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump Microsoft.NET.Test.Sdk from 16.7.1 to 16.8.3 [\#16](https://github.com/microting/eform-items-planning-base/pull/16) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [v3.0.11](https://github.com/microting/eform-items-planning-base/tree/v3.0.11) (2021-05-19)
 
@@ -438,7 +455,6 @@
 **Merged pull requests:**
 
 - Bump NUnit from 3.12.0 to 3.13.1 [\#23](https://github.com/microting/eform-items-planning-base/pull/23) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump Microsoft.NET.Test.Sdk from 16.7.1 to 16.8.3 [\#16](https://github.com/microting/eform-items-planning-base/pull/16) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [v2.1.9](https://github.com/microting/eform-items-planning-base/tree/v2.1.9) (2021-02-10)
 
