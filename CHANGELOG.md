@@ -1,5 +1,13 @@
 # Changelog
 
+## [v3.0.27](https://github.com/microting/eform-items-planning-base/tree/v3.0.27) (2021-07-05)
+
+[Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.26...v3.0.27)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.25 to 3.0.26 [\#164](https://github.com/microting/eform-items-planning-base/issues/164)
+
 ## [v3.0.26](https://github.com/microting/eform-items-planning-base/tree/v3.0.26) (2021-06-27)
 
 [Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.25...v3.0.26)
@@ -91,13 +99,16 @@
 
 [Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.15...v3.0.16)
 
+**Implemented enhancements:**
+
+- Bump Microting.eForm from 5.2.4 to 5.2.5 [\#138](https://github.com/microting/eform-items-planning-base/issues/138)
+
 ## [v3.0.15](https://github.com/microting/eform-items-planning-base/tree/v3.0.15) (2021-05-31)
 
 [Full Changelog](https://github.com/microting/eform-items-planning-base/compare/v3.0.14...v3.0.15)
 
 **Implemented enhancements:**
 
-- Bump Microting.eForm from 5.2.4 to 5.2.5 [\#138](https://github.com/microting/eform-items-planning-base/issues/138)
 - Bump Microting.eFormApi.BasePn from 3.0.13 to 3.0.14 [\#137](https://github.com/microting/eform-items-planning-base/issues/137)
 
 ## [v3.0.14](https://github.com/microting/eform-items-planning-base/tree/v3.0.14) (2021-05-31)
@@ -237,7 +248,6 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.1.3 to 3.0.0 [\#104](https://github.com/microting/eform-items-planning-base/issues/104)
-- Bump Microting.eForm from 4.5.3 to 5.0.2 [\#103](https://github.com/microting/eform-items-planning-base/issues/103)
 
 ## [v2.3.2](https://github.com/microting/eform-items-planning-base/tree/v2.3.2) (2021-04-27)
 
@@ -254,6 +264,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eForm from 4.5.3 to 5.0.2 [\#103](https://github.com/microting/eform-items-planning-base/issues/103)
 - Bump Microting.eFormApi.BasePn from 2.1.0 to 2.1.1 [\#94](https://github.com/microting/eform-items-planning-base/issues/94)
 - Bump Microting.eForm from 4.5.0 to 4.5.1 [\#93](https://github.com/microting/eform-items-planning-base/issues/93)
 
@@ -286,6 +297,7 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.127 to 2.0.128 [\#88](https://github.com/microting/eform-items-planning-base/issues/88)
+- Bump Microting.eForm from 4.4.36 to 4.4.37 [\#87](https://github.com/microting/eform-items-planning-base/issues/87)
 
 ## [v2.2.25](https://github.com/microting/eform-items-planning-base/tree/v2.2.25) (2021-04-16)
 
@@ -311,8 +323,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eForm from 4.4.36 to 4.4.37 [\#87](https://github.com/microting/eform-items-planning-base/issues/87)
-- Bump Microting.eFormApi.BasePn from 2.0.124 to 2.0.125 [\#82](https://github.com/microting/eform-items-planning-base/issues/82)
 - Bump Microting.eForm from 4.4.33 to 4.4.34 [\#81](https://github.com/microting/eform-items-planning-base/issues/81)
 
 ## [v2.2.22](https://github.com/microting/eform-items-planning-base/tree/v2.2.22) (2021-04-14)
@@ -329,6 +339,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.124 to 2.0.125 [\#82](https://github.com/microting/eform-items-planning-base/issues/82)
 - Bump Microting.eFormApi.BasePn from 2.0.120 to 2.0.122 [\#79](https://github.com/microting/eform-items-planning-base/issues/79)
 - Bump Microting.eForm from 4.4.29 to 4.4.31 [\#78](https://github.com/microting/eform-items-planning-base/issues/78)
 
@@ -358,6 +369,7 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.116 to 2.0.117 [\#73](https://github.com/microting/eform-items-planning-base/issues/73)
 - Bump Microting.eForm from 4.4.24 to 4.4.26 [\#72](https://github.com/microting/eform-items-planning-base/issues/72)
+- Bump Microting.eFormApi.BasePn from 2.0.115 to 2.0.116 [\#71](https://github.com/microting/eform-items-planning-base/issues/71)
 
 ## [v2.2.17](https://github.com/microting/eform-items-planning-base/tree/v2.2.17) (2021-04-08)
 
@@ -365,7 +377,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.115 to 2.0.116 [\#71](https://github.com/microting/eform-items-planning-base/issues/71)
 - Bump Microting.eForm from 4.4.23 to 4.4.24 [\#70](https://github.com/microting/eform-items-planning-base/issues/70)
 
 ## [v2.2.16](https://github.com/microting/eform-items-planning-base/tree/v2.2.16) (2021-04-08)
@@ -374,6 +385,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.113 to 2.0.115 [\#69](https://github.com/microting/eform-items-planning-base/issues/69)
 - Bump Microting.eForm from 4.4.21 to 4.4.23 [\#68](https://github.com/microting/eform-items-planning-base/issues/68)
 
 ## [v2.2.15](https://github.com/microting/eform-items-planning-base/tree/v2.2.15) (2021-04-08)
@@ -384,7 +396,6 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.106 to 2.0.113 [\#66](https://github.com/microting/eform-items-planning-base/issues/66)
 - Bump Microting.eForm from 4.4.11 to 4.4.21 [\#65](https://github.com/microting/eform-items-planning-base/issues/65)
-- Bump Microting.eForm from 4.4.9 to 4.4.11 [\#50](https://github.com/microting/eform-items-planning-base/issues/50)
 
 ## [v2.2.14](https://github.com/microting/eform-items-planning-base/tree/v2.2.14) (2021-03-22)
 
@@ -397,6 +408,7 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.104 to 2.0.106 [\#51](https://github.com/microting/eform-items-planning-base/issues/51)
+- Bump Microting.eForm from 4.4.9 to 4.4.11 [\#50](https://github.com/microting/eform-items-planning-base/issues/50)
 
 ## [v2.2.12](https://github.com/microting/eform-items-planning-base/tree/v2.2.12) (2021-03-17)
 
@@ -404,7 +416,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.113 to 2.0.115 [\#69](https://github.com/microting/eform-items-planning-base/issues/69)
 - Bump Microting.eFormApi.BasePn from 2.0.103 to 2.0.104 [\#49](https://github.com/microting/eform-items-planning-base/issues/49)
 - Bump Microting.eForm from 4.4.7 to 4.4.9 [\#48](https://github.com/microting/eform-items-planning-base/issues/48)
 
@@ -427,7 +438,6 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.101 to 2.0.103 [\#47](https://github.com/microting/eform-items-planning-base/issues/47)
-- Bump Microting.eForm from 4.4.6 to 4.4.7 [\#46](https://github.com/microting/eform-items-planning-base/issues/46)
 
 ## [v2.2.8](https://github.com/microting/eform-items-planning-base/tree/v2.2.8) (2021-03-11)
 
@@ -474,6 +484,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eForm from 4.4.6 to 4.4.7 [\#46](https://github.com/microting/eform-items-planning-base/issues/46)
 - Bump Microting.eFormApi.BasePn from 2.0.96 to 2.0.97 [\#32](https://github.com/microting/eform-items-planning-base/issues/32)
 - Bump Microting.eForm from 4.3.18 to 4.4.1 [\#31](https://github.com/microting/eform-items-planning-base/issues/31)
 
