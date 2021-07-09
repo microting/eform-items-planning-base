@@ -46,11 +46,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public int? DayOfMonth { get; set; }
 
         public DateTime? LastExecutedTime { get; set; }
-        
+
         public DateTime? NextExecutionTime { get; set; }
-        
+
         public bool DoneInPeriod { get; set; }
-        
+
         public bool PushMessageSent { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -100,6 +100,8 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool DaysBeforeRedeploymentPushMessageRepeat { get; set; }
 
         public int? SdkFolderId { get; set; }
+
+        public bool PushMessageOnDeployment { get; set; }
 
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
