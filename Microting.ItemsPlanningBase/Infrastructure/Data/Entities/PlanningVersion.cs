@@ -103,5 +103,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         public bool DaysBeforeRedeploymentPushMessageRepeat { get; set; }
 
         public bool PushMessageOnDeployment { get; set; }
+
+        public bool IsLocked { get; set; }
+
+        public bool IsEditable { get; set; }
+
+        public bool IsHidden { get; set; }
     }
 }

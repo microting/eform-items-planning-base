@@ -103,6 +103,12 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public bool PushMessageOnDeployment { get; set; }
 
+        public bool IsLocked { get; set; }
+
+        public bool IsEditable { get; set; }
+
+        public bool IsHidden { get; set; }
+
         public virtual List<PlanningSite> PlanningSites { get; set; }
             = new List<PlanningSite>();
 
