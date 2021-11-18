@@ -31,52 +31,54 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
     public class PlanningCaseSiteVersion : BaseEntity
     {
         public int MicrotingSdkSiteId { get; set; }
-        
+
         public int MicrotingSdkeFormId { get; set; }
-        
+
         public int Status { get; set; }
-        
+
         public string FieldStatus { get; set; }
-        
+
         public int MicrotingSdkCaseId { get; set; }
-        
+
+        public int MicrotingCheckListSitId { get; set; }
+
         public DateTime? MicrotingSdkCaseDoneAt { get; set; }
-        
+
         public int NumberOfImages { get; set; }
-        
+
         public string Comment { get; set; }
-        
+
         public string Location { get; set; }
-                
+
         public int PlanningId { get; set; }
 
         [ForeignKey("PlanningCaseSite")]
         public int PlanningCaseSiteId { get; set; }
-        
+
         public string SdkFieldValue1 { get; set; }
-        
+
         public string SdkFieldValue2 { get; set; }
-        
+
         public string SdkFieldValue3 { get; set; }
-        
+
         public string SdkFieldValue4 { get; set; }
-        
+
         public string SdkFieldValue5 { get; set; }
-        
+
         public string SdkFieldValue6 { get; set; }
-        
+
         public string SdkFieldValue7 { get; set; }
-        
+
         public string SdkFieldValue8 { get; set; }
-        
+
         public string SdkFieldValue9 { get; set; }
-        
+
         public string SdkFieldValue10 { get; set; }
-        
+
         public int DoneByUserId { get; set; }
-        
+
         public string DoneByUserName { get; set; }
-        
+
         public int PlanningCaseId { get; set; }
     }
 }
