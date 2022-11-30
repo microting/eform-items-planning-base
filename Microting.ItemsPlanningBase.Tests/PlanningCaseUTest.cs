@@ -43,16 +43,13 @@ namespace Microting.ItemsPlanningBase.Tests
             var planning = new Planning();
 
             await planning.Create(DbContext);
-            
+
             var commonTranslationModels = new List<PlanningNameTranslation>()
             {
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -61,7 +58,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 await translationModel.Create(DbContext);
             }
 
-            
+
             var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
@@ -76,7 +73,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
             var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-            
+
             // Assert
             Assert.AreEqual(1, planningCases.Count);
             Assert.AreEqual(1, planningCaseVersions.Count);
@@ -88,7 +85,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planningCase.Id, planningCases[0].Id);
             Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
             Assert.AreEqual(1, planningCases[0].Version);
-                        
+
             Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
             Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
@@ -112,10 +109,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -123,7 +117,7 @@ namespace Microting.ItemsPlanningBase.Tests
             {
                 await translationModel.Create(DbContext);
             }
-            
+
             var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
@@ -142,7 +136,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
             var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-            
+
             // Assert
             Assert.AreEqual(1, planningCases.Count);
             Assert.AreEqual(2, planningCaseVersions.Count);
@@ -154,7 +148,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planningCase.Id, planningCases[0].Id);
             Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
             Assert.AreEqual(2, planningCases[0].Version);
-                        
+
             Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
             Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
@@ -162,7 +156,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
             Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
             Assert.AreEqual(1, planningCaseVersions[0].Version);
-                        
+
             Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
             Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
             Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
@@ -186,10 +180,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -215,7 +206,7 @@ namespace Microting.ItemsPlanningBase.Tests
 
             var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
             var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-            
+
             // Assert
             Assert.AreEqual(1, planningCases.Count);
             Assert.AreEqual(2, planningCaseVersions.Count);
@@ -227,7 +218,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(Constants.WorkflowStates.Removed, planningCases[0].WorkflowState);
             Assert.AreEqual(planningCase.Id, planningCases[0].Id);
             Assert.AreEqual(2, planningCases[0].Version);
-                        
+
             Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
             Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
             Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
@@ -236,7 +227,7 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
             Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
             Assert.AreEqual(1, planningCaseVersions[0].Version);
-                        
+
             Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
             Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
             Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);

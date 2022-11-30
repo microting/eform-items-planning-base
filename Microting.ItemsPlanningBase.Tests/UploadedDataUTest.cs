@@ -27,10 +27,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -39,7 +36,7 @@ namespace Microting.ItemsPlanningBase.Tests
             {
                 await translationModel.Create(DbContext);
             }
-            
+
             var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
@@ -69,10 +66,10 @@ namespace Microting.ItemsPlanningBase.Tests
             var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
-            
+
             Assert.AreEqual(1, uploadedDataList.Count);
             Assert.AreEqual(1, uploadedDataVersionList.Count);
-            
+
             Assert.AreEqual(uploadedData.Checksum, dbUploadedData.Checksum);
             Assert.AreEqual(uploadedData.Extension, dbUploadedData.Extension);
             Assert.AreEqual(uploadedData.CurrentFile, dbUploadedData.CurrentFile);
@@ -95,10 +92,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -106,7 +100,7 @@ namespace Microting.ItemsPlanningBase.Tests
             {
                 await translationModel.Create(DbContext);
             }
-            
+
             var planningCase = new PlanningCase
             {
                 MicrotingSdkSiteId = 24,
@@ -117,7 +111,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             await planningCase.Create(DbContext);
-            
+
             var uploadedData = new UploadedData
             {
                 PlanningCaseId = planningCase.Id,
@@ -151,10 +145,10 @@ namespace Microting.ItemsPlanningBase.Tests
             var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
-            
+
             Assert.AreEqual(1, uploadedDataList.Count);
             Assert.AreEqual(2, uploadedDataVersionList.Count);
-            
+
             Assert.AreEqual(newCheckSum, dbUploadedData.Checksum);
             Assert.AreEqual(newExtension, dbUploadedData.Extension);
             Assert.AreEqual(newCurrentFile, dbUploadedData.CurrentFile);
@@ -177,10 +171,7 @@ namespace Microting.ItemsPlanningBase.Tests
                 new PlanningNameTranslation()
                 {
                     Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        LanguageCode = "da", Name = "Danish"
-                    },
+                    LanguageId = 1,
                     Planning = planning
                 }
             };
@@ -199,7 +190,7 @@ namespace Microting.ItemsPlanningBase.Tests
             };
 
             await planningCase.Create(DbContext);
-            
+
             var uploadedData = new UploadedData
             {
                 PlanningCaseId = planningCase.Id,
@@ -220,10 +211,10 @@ namespace Microting.ItemsPlanningBase.Tests
             var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
             //Assert
             Assert.NotNull(dbUploadedData);
-            
+
             Assert.AreEqual(1, uploadedDataList.Count);
             Assert.AreEqual(2, uploadedDataVersionList.Count);
-           
+
             Assert.AreEqual(uploadedData.Checksum, dbUploadedData.Checksum);
             Assert.AreEqual(uploadedData.Extension, dbUploadedData.Extension);
             Assert.AreEqual(uploadedData.CurrentFile, dbUploadedData.CurrentFile);
@@ -233,6 +224,6 @@ namespace Microting.ItemsPlanningBase.Tests
             Assert.AreEqual(uploadedData.PlanningCaseId, dbUploadedData.PlanningCaseId);
             Assert.AreEqual(Constants.WorkflowStates.Removed, dbUploadedData.WorkflowState);
         }
-        
+
     }
 }

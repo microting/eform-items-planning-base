@@ -36,8 +36,6 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
 
         public int LanguageId { get; set; }
 
-        public virtual Language Language { get; set; }
-
         public int PlanningId { get; set; }
 
         public int PlanningNameTranslationId { get; set; }
