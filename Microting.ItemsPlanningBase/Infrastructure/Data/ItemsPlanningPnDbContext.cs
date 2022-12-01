@@ -67,11 +67,11 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //
-            // modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
-            //     .WithMany()
-            //     .HasForeignKey(x => x.LanguageId)
-            //     .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
+                .WithMany()
+                .HasForeignKey(x => x.LanguageId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Planning)
                 .WithMany(x => x.NameTranslations)

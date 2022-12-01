@@ -33,11 +33,14 @@ namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
         [StringLength(250)]
         public string Name { get; set; }
 
+        [ForeignKey("Language")]
         public int LanguageId { get; set; }
 
         public int PlanningId { get; set; }
 
         public virtual Planning Planning { get; set; }
+
+        public virtual Language Language { get; set; }
 
     }
 }
