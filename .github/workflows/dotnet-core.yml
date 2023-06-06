@@ -37,7 +37,7 @@ jobs:
     - name: Unit Tests
       run: dotnet test --no-restore -c Release -v n Microting.ItemsPlanningBase.Tests/Microting.ItemsPlanningBase.Tests.csproj
     - name: Pack
-      run: dotnet pack Microtgin.ItemsPlanningBase/Microting.ItemsPlanningBase.csproj -c Release -o ./artifacts -p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
+      run: dotnet pack Microting.ItemsPlanningBase/Microting.ItemsPlanningBase.csproj -c Release -o ./artifacts -p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
     - name: Push generated package to GitHub registry
       run: dotnet nuget push /home/runner/work/eform-items-planning-base/eform-items-planning-base/artifacts/Microting.ItemsPlanningBase.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{secrets.NUGET_SECRET_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
     - name: Notify slack fail
