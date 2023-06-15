@@ -29,65 +29,64 @@ using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using UploadedData = Microting.ItemsPlanningBase.Infrastructure.Data.Entities.UploadedData;
 using UploadedDataVersion = Microting.ItemsPlanningBase.Infrastructure.Data.Entities.UploadedDataVersion;
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data
+namespace Microting.ItemsPlanningBase.Infrastructure.Data;
+
+public class ItemsPlanningPnDbContext: DbContext, IPluginDbContext
 {
-    public class ItemsPlanningPnDbContext: DbContext, IPluginDbContext
+    public ItemsPlanningPnDbContext() { }
+
+    public ItemsPlanningPnDbContext(DbContextOptions<ItemsPlanningPnDbContext> options) : base(options)
     {
-        public ItemsPlanningPnDbContext() { }
+    }
 
-        public ItemsPlanningPnDbContext(DbContextOptions<ItemsPlanningPnDbContext> options) : base(options)
-        {
-        }
+    public DbSet<Planning> Plannings { get; set; }
+    public DbSet<PlanningVersion> PlanningVersions { get; set; }
+    public DbSet<UploadedData> UploadedDatas { get; set; }
+    public DbSet<UploadedDataVersion> UploadedDataVersions { get; set; }
+    public DbSet<PlanningCase> PlanningCases { get; set; }
+    public DbSet<PlanningCaseVersion> PlanningCaseVersions { get; set; }
+    public DbSet<PlanningCaseSite> PlanningCaseSites { get; set; }
+    public DbSet<PlanningCaseSiteVersion> PlanningCaseSiteVersions { get; set; }
+    public DbSet<PlanningSite> PlanningSites { get; set; }
+    public DbSet<PlanningSiteVersion> PlanningSiteVersions { get; set; }
+    public DbSet<PlanningTag> PlanningTags { get; set; }
+    public DbSet<PlanningTagVersion> PlanningTagVersions { get; set; }
+    public DbSet<PlanningsTags> PlanningsTags { get; set; }
+    public DbSet<PlanningsTagsVersion> PlanningsTagsVersions { get; set; }
+    public DbSet<PlanningNameTranslation> PlanningNameTranslation { get; set; }
+    public DbSet<PlanningNameTranslationVersion> PlanningNameTranslationVersions { get; set; }
+    public DbSet<Language> Languages { get; set; }
 
-        public DbSet<Planning> Plannings { get; set; }
-        public DbSet<PlanningVersion> PlanningVersions { get; set; }
-        public DbSet<UploadedData> UploadedDatas { get; set; }
-        public DbSet<UploadedDataVersion> UploadedDataVersions { get; set; }
-        public DbSet<PlanningCase> PlanningCases { get; set; }
-        public DbSet<PlanningCaseVersion> PlanningCaseVersions { get; set; }
-        public DbSet<PlanningCaseSite> PlanningCaseSites { get; set; }
-        public DbSet<PlanningCaseSiteVersion> PlanningCaseSiteVersions { get; set; }
-        public DbSet<PlanningSite> PlanningSites { get; set; }
-        public DbSet<PlanningSiteVersion> PlanningSiteVersions { get; set; }
-        public DbSet<PlanningTag> PlanningTags { get; set; }
-        public DbSet<PlanningTagVersion> PlanningTagVersions { get; set; }
-        public DbSet<PlanningsTags> PlanningsTags { get; set; }
-        public DbSet<PlanningsTagsVersion> PlanningsTagsVersions { get; set; }
-        public DbSet<PlanningNameTranslation> PlanningNameTranslation { get; set; }
-        public DbSet<PlanningNameTranslationVersion> PlanningNameTranslationVersions { get; set; }
-        public DbSet<Language> Languages { get; set; }
+    // common tables
+    public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
+    public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
+    public DbSet<PluginPermission> PluginPermissions { get; set; }
+    public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
+    public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
 
-        // common tables
-        public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
-        public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
-        public DbSet<PluginPermission> PluginPermissions { get; set; }
-        public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
-        public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
+            .WithMany()
+            .HasForeignKey(x => x.LanguageId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
-                .WithMany()
-                .HasForeignKey(x => x.LanguageId)
-                .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Planning)
+            .WithMany(x => x.NameTranslations)
+            .HasForeignKey(x => x.PlanningId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Planning)
-                .WithMany(x => x.NameTranslations)
-                .HasForeignKey(x => x.PlanningId)
-                .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<PlanningCase>().HasOne(x => x.Planning)
+            .WithMany(x => x.PlanningCases)
+            .HasForeignKey(x => x.PlanningId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PlanningCase>().HasOne(x => x.Planning)
-                .WithMany(x => x.PlanningCases)
-                .HasForeignKey(x => x.PlanningId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            //modelBuilder.Entity<PluginGroupPermissionVersion>()
-            //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)
-            //    .WithMany()
-            //    .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
-            //    .OnDelete(DeleteBehavior.Restrict);
-        }
+        //modelBuilder.Entity<PluginGroupPermissionVersion>()
+        //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)
+        //    .WithMany()
+        //    .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
+        //    .OnDelete(DeleteBehavior.Restrict);
     }
 }

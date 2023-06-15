@@ -23,15 +23,14 @@ SOFTWARE.
 */
 using NUnit.Framework;
 
-namespace Microting.ItemsPlanningBase.Tests
+namespace Microting.ItemsPlanningBase.Tests;
+
+[TestFixture]
+public class CanaryInAColeMine
 {
-    [TestFixture]
-    public class CanaryInAColeMine
+    [Test]
+    public void CanPeep()
     {
-        [Test]
-        public void CanPeep()
-        {
-            Assert.True(true);
-        }
+        Assert.True(true);
     }
 }

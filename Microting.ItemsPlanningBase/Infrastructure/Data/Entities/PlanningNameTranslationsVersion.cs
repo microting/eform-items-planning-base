@@ -23,23 +23,22 @@ SOFTWARE.
 */
 
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+using System.ComponentModel.DataAnnotations;
+using Microting.eForm.Infrastructure.Data.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+
+public class PlanningNameTranslationVersion : eFormApi.BasePn.Infrastructure.Database.Base.BaseEntity
 {
-    using System.ComponentModel.DataAnnotations;
-    using Microting.eForm.Infrastructure.Data.Entities;
-    using System.ComponentModel.DataAnnotations.Schema;
+    [StringLength(250)]
+    public string Name { get; set; }
 
-    public class PlanningNameTranslationVersion : eFormApi.BasePn.Infrastructure.Database.Base.BaseEntity
-    {
-        [StringLength(250)]
-        public string Name { get; set; }
+    public int LanguageId { get; set; }
 
-        public int LanguageId { get; set; }
+    public int PlanningId { get; set; }
 
-        public int PlanningId { get; set; }
+    public int PlanningNameTranslationId { get; set; }
 
-        public int PlanningNameTranslationId { get; set; }
-
-        public virtual PlanningNameTranslation PlanningNameTranslation { get; set; }
-    }
+    public virtual PlanningNameTranslation PlanningNameTranslation { get; set; }
 }

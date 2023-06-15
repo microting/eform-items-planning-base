@@ -21,13 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Microting.ItemsPlanningBase.Infrastructure.Const
+namespace Microting.ItemsPlanningBase.Infrastructure.Const;
+
+public static class ItemsPlanningClaims
 {
-    public static class ItemsPlanningClaims
-    {
-        public const string AccessItemsPlanningPlugin = "items_planning_plugin_access";
-        public const string CreatePlannings = "plannings_create";
-        public const string EditPlanning = "planning_edit";
-        public const string GetPlannings = "plannings_get";
-    }
+    public const string AccessItemsPlanningPlugin = "items_planning_plugin_access";
+    public const string CreatePlannings = "plannings_create";
+    public const string EditPlanning = "planning_edit";
+    public const string GetPlannings = "plannings_get";
 }

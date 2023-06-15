@@ -18,16 +18,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+public class PlanningsTags : PnBase
 {
-    public class PlanningsTags : PnBase
-    {
-        public int PlanningTagId { get; set; }
+    public int PlanningTagId { get; set; }
 
-        public virtual PlanningTag PlanningTag { get; set; }
+    public virtual PlanningTag PlanningTag { get; set; }
 
-        public int PlanningId { get; set; }
+    public int PlanningId { get; set; }
 
-        public virtual Planning Planning { get; set; }
-    }
+    public virtual Planning Planning { get; set; }
 }

@@ -25,29 +25,28 @@ SOFTWARE.
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+public class UploadedData : PnBase
 {
-    public class UploadedData : PnBase
-    {
-        [ForeignKey("PlanningCase")]
-        public int PlanningCaseId { get; set; }
+    [ForeignKey("PlanningCase")]
+    public int PlanningCaseId { get; set; }
         
-        [StringLength(255)]
-        public string Checksum { get; set; }
+    [StringLength(255)]
+    public string Checksum { get; set; }
 
-        [StringLength(255)]
-        public string Extension { get; set; }
+    [StringLength(255)]
+    public string Extension { get; set; }
 
-        [StringLength(255)]
-        public string CurrentFile { get; set; }
+    [StringLength(255)]
+    public string CurrentFile { get; set; }
 
-        [StringLength(255)]
-        public string UploaderType { get; set; }
+    [StringLength(255)]
+    public string UploaderType { get; set; }
 
-        [StringLength(255)]
-        public string FileLocation { get; set; }
+    [StringLength(255)]
+    public string FileLocation { get; set; }
 
-        [StringLength(255)]
-        public string FileName { get; set; }
-    }
+    [StringLength(255)]
+    public string FileName { get; set; }
 }

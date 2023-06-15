@@ -31,223 +31,222 @@ using Microting.eForm.Infrastructure.Data.Entities;
 using Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
-namespace Microting.ItemsPlanningBase.Tests
+namespace Microting.ItemsPlanningBase.Tests;
+
+[TestFixture]
+public class PlanningCaseUTest : DbTestFixture
 {
-    [TestFixture]
-    public class PlanningCaseUTest : DbTestFixture
+    [Test]
+    public async Task PlanningCase_Save_DoesSave()
     {
-        [Test]
-        public async Task PlanningCase_Save_DoesSave()
+        // Arrange
+        var planning = new Planning();
+
+        await planning.Create(DbContext);
+
+        var commonTranslationModels = new List<PlanningNameTranslation>()
         {
-            // Arrange
-            var planning = new Planning();
-
-            await planning.Create(DbContext);
-
-            var commonTranslationModels = new List<PlanningNameTranslation>()
+            new()
             {
-                new PlanningNameTranslation()
+                Name = Guid.NewGuid().ToString(),
+                Language = new Language()
                 {
-                    Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        Name = "Danish",
-                        LanguageCode = "da"
-                    },
-                    Planning = planning
-                }
-            };
-            foreach (var translationModel in commonTranslationModels)
-            {
-                await translationModel.Create(DbContext);
+                    Name = "Danish",
+                    LanguageCode = "da"
+                },
+                Planning = planning
             }
-
-
-            var planningCase = new PlanningCase
-            {
-                MicrotingSdkSiteId = 24,
-                MicrotingSdkCaseId = 34,
-                MicrotingSdkeFormId = 234,
-                Status = 66,
-                PlanningId = planning.Id,
-            };
-
-            // Act
-            await planningCase.Create(DbContext);
-
-            var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-
-            // Assert
-            Assert.AreEqual(1, planningCases.Count);
-            Assert.AreEqual(1, planningCaseVersions.Count);
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-            Assert.AreEqual(planningCase.Status, planningCases[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-            Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-            Assert.AreEqual(1, planningCases[0].Version);
-
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-            Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-            Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-            Assert.AreEqual(1, planningCaseVersions[0].Version);
+        };
+        foreach (var translationModel in commonTranslationModels)
+        {
+            await translationModel.Create(DbContext);
         }
 
-        [Test]
-        public async Task PlanningCase_Update_DoesUpdate()
+
+        var planningCase = new PlanningCase
         {
-            // Arrange
-            var planning = new Planning();
+            MicrotingSdkSiteId = 24,
+            MicrotingSdkCaseId = 34,
+            MicrotingSdkeFormId = 234,
+            Status = 66,
+            PlanningId = planning.Id,
+        };
 
-            await planning.Create(DbContext);
+        // Act
+        await planningCase.Create(DbContext);
 
-            var commonTranslationModels = new List<PlanningNameTranslation>()
+        var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
+        var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+
+        // Assert
+        Assert.AreEqual(1, planningCases.Count);
+        Assert.AreEqual(1, planningCaseVersions.Count);
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
+        Assert.AreEqual(planningCase.Status, planningCases[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
+        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
+        Assert.AreEqual(1, planningCases[0].Version);
+
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
+        Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
+        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
+        Assert.AreEqual(1, planningCaseVersions[0].Version);
+    }
+
+    [Test]
+    public async Task PlanningCase_Update_DoesUpdate()
+    {
+        // Arrange
+        var planning = new Planning();
+
+        await planning.Create(DbContext);
+
+        var commonTranslationModels = new List<PlanningNameTranslation>()
+        {
+            new()
             {
-                new PlanningNameTranslation()
+                Name = Guid.NewGuid().ToString(),
+                Language = new Language()
                 {
-                    Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        Name = "Danish",
-                        LanguageCode = "da"
-                    },
-                    Planning = planning
-                }
-            };
-            foreach (var translationModel in commonTranslationModels)
-            {
-                await translationModel.Create(DbContext);
+                    Name = "Danish",
+                    LanguageCode = "da"
+                },
+                Planning = planning
             }
-
-            var planningCase = new PlanningCase
-            {
-                MicrotingSdkSiteId = 24,
-                MicrotingSdkCaseId = 34,
-                MicrotingSdkeFormId = 234,
-                Status = 66,
-                PlanningId = planning.Id,
-            };
-
-            await planningCase.Create(DbContext);
-            // Act
-            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
-
-            planningCase.Status = 77;
-            await planningCase.Update(DbContext);
-
-            var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-
-            // Assert
-            Assert.AreEqual(1, planningCases.Count);
-            Assert.AreEqual(2, planningCaseVersions.Count);
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-            Assert.AreEqual(77, planningCases[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-            Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-            Assert.AreEqual(2, planningCases[0].Version);
-
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-            Assert.AreEqual(66, planningCaseVersions[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-            Assert.AreEqual(1, planningCaseVersions[0].Version);
-
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
-            Assert.AreEqual(77, planningCaseVersions[1].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[1].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
-            Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-            Assert.AreEqual(2, planningCaseVersions[1].Version);
+        };
+        foreach (var translationModel in commonTranslationModels)
+        {
+            await translationModel.Create(DbContext);
         }
 
-        [Test]
-        public async Task PlanningCase_Delete_DoesDelete()
+        var planningCase = new PlanningCase
         {
-            // Arrange
-            var planning = new Planning();
+            MicrotingSdkSiteId = 24,
+            MicrotingSdkCaseId = 34,
+            MicrotingSdkeFormId = 234,
+            Status = 66,
+            PlanningId = planning.Id,
+        };
 
-            await planning.Create(DbContext);
+        await planningCase.Create(DbContext);
+        // Act
+        // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
 
-            var commonTranslationModels = new List<PlanningNameTranslation>()
+        planningCase.Status = 77;
+        await planningCase.Update(DbContext);
+
+        var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
+        var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+
+        // Assert
+        Assert.AreEqual(1, planningCases.Count);
+        Assert.AreEqual(2, planningCaseVersions.Count);
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
+        Assert.AreEqual(77, planningCases[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
+        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
+        Assert.AreEqual(2, planningCases[0].Version);
+
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
+        Assert.AreEqual(66, planningCaseVersions[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
+        Assert.AreEqual(1, planningCaseVersions[0].Version);
+
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
+        Assert.AreEqual(77, planningCaseVersions[1].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[1].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
+        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
+        Assert.AreEqual(2, planningCaseVersions[1].Version);
+    }
+
+    [Test]
+    public async Task PlanningCase_Delete_DoesDelete()
+    {
+        // Arrange
+        var planning = new Planning();
+
+        await planning.Create(DbContext);
+
+        var commonTranslationModels = new List<PlanningNameTranslation>()
+        {
+            new()
             {
-                new PlanningNameTranslation()
+                Name = Guid.NewGuid().ToString(),
+                Language = new Language()
                 {
-                    Name = Guid.NewGuid().ToString(),
-                    Language = new Language()
-                    {
-                        Name = "Danish",
-                        LanguageCode = "da"
-                    },
-                    Planning = planning
-                }
-            };
-            foreach (var translationModel in commonTranslationModels)
-            {
-                await translationModel.Create(DbContext);
+                    Name = "Danish",
+                    LanguageCode = "da"
+                },
+                Planning = planning
             }
-
-            var planningCase = new PlanningCase
-            {
-                MicrotingSdkSiteId = 24,
-                MicrotingSdkCaseId = 34,
-                MicrotingSdkeFormId = 234,
-                Status = 66,
-                PlanningId = planning.Id,
-            };
-
-            await planningCase.Create(DbContext);
-            // Act
-            // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
-
-            await planningCase.Delete(DbContext);
-
-            var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
-            var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
-
-            // Assert
-            Assert.AreEqual(1, planningCases.Count);
-            Assert.AreEqual(2, planningCaseVersions.Count);
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-            Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-            Assert.AreEqual(planningCase.Status, planningCases[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Removed, planningCases[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-            Assert.AreEqual(2, planningCases[0].Version);
-
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-            Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-            Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-            Assert.AreEqual(1, planningCaseVersions[0].Version);
-
-            Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
-            Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
-            Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
-            Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[1].PlanningId);
-            Assert.AreEqual(planningCase.Status, planningCaseVersions[1].Status);
-            Assert.AreEqual(Constants.WorkflowStates.Removed, planningCaseVersions[1].WorkflowState);
-            Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
-            Assert.AreEqual(2, planningCaseVersions[1].Version);
+        };
+        foreach (var translationModel in commonTranslationModels)
+        {
+            await translationModel.Create(DbContext);
         }
+
+        var planningCase = new PlanningCase
+        {
+            MicrotingSdkSiteId = 24,
+            MicrotingSdkCaseId = 34,
+            MicrotingSdkeFormId = 234,
+            Status = 66,
+            PlanningId = planning.Id,
+        };
+
+        await planningCase.Create(DbContext);
+        // Act
+        // itemCase = await DbContext.PlanningCases.AsNoTracking().FirstOrDefaultAsync();
+
+        await planningCase.Delete(DbContext);
+
+        var planningCases = DbContext.PlanningCases.AsNoTracking().ToList();
+        var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
+
+        // Assert
+        Assert.AreEqual(1, planningCases.Count);
+        Assert.AreEqual(2, planningCaseVersions.Count);
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
+        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
+        Assert.AreEqual(planningCase.Status, planningCases[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Removed, planningCases[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
+        Assert.AreEqual(2, planningCases[0].Version);
+
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
+        Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
+        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
+        Assert.AreEqual(1, planningCaseVersions[0].Version);
+
+        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
+        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
+        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
+        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[1].PlanningId);
+        Assert.AreEqual(planningCase.Status, planningCaseVersions[1].Status);
+        Assert.AreEqual(Constants.WorkflowStates.Removed, planningCaseVersions[1].WorkflowState);
+        Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
+        Assert.AreEqual(2, planningCaseVersions[1].Version);
     }
 }

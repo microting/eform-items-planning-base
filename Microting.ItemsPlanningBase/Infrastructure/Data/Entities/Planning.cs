@@ -22,100 +22,95 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+using System.Collections.Generic;
+using System;
+using Enums;
+
+public class Planning : PnBase
 {
-    using System.Collections.Generic;
-    using System;
-    using Enums;
+    public virtual List<PlanningNameTranslation> NameTranslations { get; set; } = new();
 
-    public class Planning : PnBase
-    {
-        public virtual List<PlanningNameTranslation> NameTranslations { get; set; }
-            = new List<PlanningNameTranslation>();
+    public string Description { get; set; }
 
-        public string Description { get; set; }
+    public int RepeatEvery { get; set; }
 
-        public int RepeatEvery { get; set; }
+    public RepeatType RepeatType { get; set; }
 
-        public RepeatType RepeatType { get; set; }
+    public DateTime? RepeatUntil { get; set; }
 
-        public DateTime? RepeatUntil { get; set; }
+    public DayOfWeek? DayOfWeek { get; set; }
 
-        public DayOfWeek? DayOfWeek { get; set; }
+    public int? DayOfMonth { get; set; }
 
-        public int? DayOfMonth { get; set; }
+    public DateTime? LastExecutedTime { get; set; }
 
-        public DateTime? LastExecutedTime { get; set; }
+    public DateTime? NextExecutionTime { get; set; }
 
-        public DateTime? NextExecutionTime { get; set; }
+    public bool DoneInPeriod { get; set; }
 
-        public bool DoneInPeriod { get; set; }
+    public bool PushMessageSent { get; set; }
 
-        public bool PushMessageSent { get; set; }
+    public DateTime StartDate { get; set; }
 
-        public DateTime StartDate { get; set; }
+    public bool Enabled { get; set; }
 
-        public bool Enabled { get; set; }
+    public int RelatedEFormId { get; set; }
 
-        public int RelatedEFormId { get; set; }
+    public string RelatedEFormName { get; set; }
 
-        public string RelatedEFormName { get; set; }
+    public bool DeployedAtEnabled { get; set; }
 
-        public bool DeployedAtEnabled { get; set; }
+    public bool DoneAtEnabled { get; set; }
 
-        public bool DoneAtEnabled { get; set; }
+    public bool DoneByUserNameEnabled { get; set; }
 
-        public bool DoneByUserNameEnabled { get; set; }
+    public bool UploadedDataEnabled { get; set; }
 
-        public bool UploadedDataEnabled { get; set; }
+    public bool LabelEnabled { get; set; }
 
-        public bool LabelEnabled { get; set; }
+    public bool DescriptionEnabled { get; set; }
 
-        public bool DescriptionEnabled { get; set; }
+    public bool PlanningNumberEnabled { get; set; }
 
-        public bool PlanningNumberEnabled { get; set; }
+    public bool LocationCodeEnabled { get; set; }
 
-        public bool LocationCodeEnabled { get; set; }
+    public bool BuildYearEnabled { get; set; }
 
-        public bool BuildYearEnabled { get; set; }
+    public bool NumberOfImagesEnabled { get; set; }
 
-        public bool NumberOfImagesEnabled { get; set; }
+    public bool TypeEnabled { get; set; }
 
-        public bool TypeEnabled { get; set; }
+    public string PlanningNumber { get; set; }
 
-        public string PlanningNumber { get; set; }
+    public string LocationCode { get; set; }
 
-        public string LocationCode { get; set; }
+    public string BuildYear { get; set; }
 
-        public string BuildYear { get; set; }
+    public string Type { get; set; }
 
-        public string Type { get; set; }
+    public string SdkFolderName { get; set; }
 
-        public string SdkFolderName { get; set; }
+    public string SdkParentFolderName { get; set; }
 
-        public string SdkParentFolderName { get; set; }
+    public int DaysBeforeRedeploymentPushMessage { get; set; }
 
-        public int DaysBeforeRedeploymentPushMessage { get; set; }
+    public bool DaysBeforeRedeploymentPushMessageRepeat { get; set; }
 
-        public bool DaysBeforeRedeploymentPushMessageRepeat { get; set; }
+    public int? SdkFolderId { get; set; }
 
-        public int? SdkFolderId { get; set; }
+    public bool PushMessageOnDeployment { get; set; }
 
-        public bool PushMessageOnDeployment { get; set; }
+    public bool IsLocked { get; set; }
 
-        public bool IsLocked { get; set; }
+    public bool IsEditable { get; set; }
 
-        public bool IsEditable { get; set; }
+    public bool IsHidden { get; set; }
 
-        public bool IsHidden { get; set; }
+    public virtual List<PlanningSite> PlanningSites { get; set; } = new();
 
-        public virtual List<PlanningSite> PlanningSites { get; set; }
-            = new List<PlanningSite>();
+    public virtual List<PlanningsTags> PlanningsTags { get; set; } = new();
 
-        public virtual List<PlanningsTags> PlanningsTags { get; set; }
-            = new List<PlanningsTags>();
-
-        public virtual List<PlanningCase> PlanningCases { get; set; }
-            = new List<PlanningCase>();
-    }
+    public virtual List<PlanningCase> PlanningCases { get; set; } = new();
 }

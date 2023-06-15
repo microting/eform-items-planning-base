@@ -1,13 +1,12 @@
 ﻿using Microting.eForm.Infrastructure.Data.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
-{
-    public class PlanningTagVersion : BaseEntity
-    {
-        public string Name { get; set; }
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 
-        [ForeignKey("PlanningTag")]
-        public int PlanningTagId { get; set; }
-    }
+public class PlanningTagVersion : BaseEntity
+{
+    public string Name { get; set; }
+
+    [ForeignKey("PlanningTag")]
+    public int PlanningTagId { get; set; }
 }

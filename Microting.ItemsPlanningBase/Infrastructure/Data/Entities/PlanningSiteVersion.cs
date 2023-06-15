@@ -22,20 +22,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+
+public class PlanningSiteVersion : BaseEntity
 {
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+    public DateTime? LastExecutedTime { get; set; }
+    public int SiteId { get; set; }
 
-    public class PlanningSiteVersion : BaseEntity
-    {
-        public DateTime? LastExecutedTime { get; set; }
-        public int SiteId { get; set; }
+    public int PlanningId { get; set; }
 
-        public int PlanningId { get; set; }
-
-        [ForeignKey("PlanningSite")]
-        public int PlanningSiteId { get; set; }
-    }
+    [ForeignKey("PlanningSite")]
+    public int PlanningSiteId { get; set; }
 }

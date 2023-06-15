@@ -22,15 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
-{
-    using System;
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
 
-    public class PlanningSite : PnBase
-    {
-        public DateTime? LastExecutedTime { get; set; }
-        public int SiteId { get; set; }
-        public int PlanningId { get; set; }
-        public virtual Planning Planning { get; set; }
-    }
+using System;
+
+public class PlanningSite : PnBase
+{
+    public DateTime? LastExecutedTime { get; set; }
+    public int SiteId { get; set; }
+    public int PlanningId { get; set; }
+    public virtual Planning Planning { get; set; }
 }

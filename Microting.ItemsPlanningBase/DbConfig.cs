@@ -21,10 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Microting.ItemsPlanningBase
+namespace Microting.ItemsPlanningBase;
+
+class DbConfig
 {
-    class DbConfig
-    {
-        public static bool IsMySQL = false;
-    }
+    public static bool IsMySQL = false;
 }

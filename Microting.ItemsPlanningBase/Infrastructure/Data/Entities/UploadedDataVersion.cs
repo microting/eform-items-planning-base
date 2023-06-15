@@ -26,31 +26,30 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+public class UploadedDataVersion : BaseEntity
 {
-    public class UploadedDataVersion : BaseEntity
-    {
-        public int PlanningCaseId { get; set; }
+    public int PlanningCaseId { get; set; }
         
-        [StringLength(255)]
-        public string Checksum { get; set; }
+    [StringLength(255)]
+    public string Checksum { get; set; }
 
-        [StringLength(255)]
-        public string Extension { get; set; }
+    [StringLength(255)]
+    public string Extension { get; set; }
 
-        [StringLength(255)]
-        public string CurrentFile { get; set; }
+    [StringLength(255)]
+    public string CurrentFile { get; set; }
 
-        [StringLength(255)]
-        public string UploaderType { get; set; }
+    [StringLength(255)]
+    public string UploaderType { get; set; }
 
-        [StringLength(255)]
-        public string FileLocation { get; set; }
+    [StringLength(255)]
+    public string FileLocation { get; set; }
 
-        [StringLength(255)]
-        public string FileName { get; set; }
+    [StringLength(255)]
+    public string FileName { get; set; }
 
-        [ForeignKey("UploadedData")]
-        public int UploadedDataId { get; set; }
-    }
+    [ForeignKey("UploadedData")]
+    public int UploadedDataId { get; set; }
 }

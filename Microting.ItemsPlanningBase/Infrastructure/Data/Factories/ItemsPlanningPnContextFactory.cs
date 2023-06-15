@@ -28,24 +28,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Factories;
+
+public class ItemsPlanningPnContextFactory : IDesignTimeDbContextFactory<ItemsPlanningPnDbContext>
 {
-    public class ItemsPlanningPnContextFactory : IDesignTimeDbContextFactory<ItemsPlanningPnDbContext>
+    public ItemsPlanningPnDbContext CreateDbContext(string[] args)
     {
-        public ItemsPlanningPnDbContext CreateDbContext(string[] args)
+        var defaultCs = "Server = localhost; port = 3306; Database = items-planning-pn; user = root; password = secretpassword;Convert Zero Datetime = true;";
+        var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
+
+        optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, new MariaDbServerVersion(
+            ServerVersion.AutoDetect(args.Any() ? args[0] : defaultCs)), mySqlOptionsAction: builder =>
         {
-            var defaultCs = "Server = localhost; port = 3306; Database = items-planning-pn; user = root; password = secretpassword;Convert Zero Datetime = true;";
-            var optionsBuilder = new DbContextOptionsBuilder<ItemsPlanningPnDbContext>();
+            builder.EnableRetryOnFailure();
+        });
+        //optionsBuilder.UseLazyLoadingProxies(true);
 
-            optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, new MariaDbServerVersion(
-                ServerVersion.AutoDetect(args.Any() ? args[0] : defaultCs)), mySqlOptionsAction: builder =>
-            {
-                builder.EnableRetryOnFailure();
-            });
-            //optionsBuilder.UseLazyLoadingProxies(true);
-
-            return new ItemsPlanningPnDbContext(optionsBuilder.Options);
-            // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
-        }
+        return new ItemsPlanningPnDbContext(optionsBuilder.Options);
+        // dotnet ef migrations add InitialCreate --project Microting.ItemsPlanningBase --startup-project DBMigrator
     }
 }

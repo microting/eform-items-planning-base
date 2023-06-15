@@ -23,132 +23,131 @@ SOFTWARE.
 */
 
 
-namespace Microting.ItemsPlanningBase.Tests
+namespace Microting.ItemsPlanningBase.Tests;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
+using Infrastructure.Data.Factories;
+using NUnit.Framework;
+[TestFixture]
+public abstract class DbTestFixture
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using Microsoft.EntityFrameworkCore;
-    using Infrastructure.Data;
-    using Infrastructure.Data.Factories;
-    using NUnit.Framework;
-    [TestFixture]
-    public abstract class DbTestFixture
-    {
-        protected ItemsPlanningPnDbContext DbContext;
-        private string _connectionString;
-        private string path;
+    protected ItemsPlanningPnDbContext DbContext;
+    private string _connectionString;
+    private string path;
         
 
-        private void GetContext(string connectionStr)
-        {
-            var contextFactory = new ItemsPlanningPnContextFactory();
-            DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
+    private void GetContext(string connectionStr)
+    {
+        var contextFactory = new ItemsPlanningPnContextFactory();
+        DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
 
-            DbContext.Database.Migrate();
-            DbContext.Database.EnsureCreated();
-        }
+        DbContext.Database.Migrate();
+        DbContext.Database.EnsureCreated();
+    }
 
-        [SetUp]
-        public void Setup()
-        {
+    [SetUp]
+    public void Setup()
+    {
 
-            _connectionString =
-                @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
+        _connectionString =
+            @"Server = localhost; port = 3306; Database = items-planning-pn-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
 
-            GetContext(_connectionString);
+        GetContext(_connectionString);
 
-            DbContext.Database.SetCommandTimeout(300);
+        DbContext.Database.SetCommandTimeout(300);
 
-            try
-            {
-                ClearDb();
-            }
-            catch
-            {
-                DbContext.Database.Migrate();
-            }
-
-            DoSetup();
-        }
-
-        [TearDown]
-        public void TearDown()
+        try
         {
             ClearDb();
-
-            ClearFile();
-
-            DbContext.Dispose();
+        }
+        catch
+        {
+            DbContext.Database.Migrate();
         }
 
-        private void ClearDb()
+        DoSetup();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        ClearDb();
+
+        ClearFile();
+
+        DbContext.Dispose();
+    }
+
+    private void ClearDb()
+    {
+        var modelNames = new List<string>
         {
-            var modelNames = new List<string>
-            {
-                "PlanningCases",
-                "PlanningCaseVersions",
-                "Plannings",
-                "PlanningVersions",
-                "UploadedDataVersions",
-                "UploadedDatas",
-                "PlanningCaseSites",
-                "PlanningCaseSiteVersions",
-                "PlanningNameTranslation",
-                "PlanningNameTranslationVersions",
-                "Languages"
-            };
+            "PlanningCases",
+            "PlanningCaseVersions",
+            "Plannings",
+            "PlanningVersions",
+            "UploadedDataVersions",
+            "UploadedDatas",
+            "PlanningCaseSites",
+            "PlanningCaseSiteVersions",
+            "PlanningNameTranslation",
+            "PlanningNameTranslationVersions",
+            "Languages"
+        };
 
-            var firstRunNotDone = true;
+        var firstRunNotDone = true;
 
-            foreach (var modelName in modelNames)
-            {
-                try
-                {
-                    if (firstRunNotDone)
-                    {
-                        DbContext.Database.ExecuteSqlRaw(
-                            $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message == "Unknown database 'items-planning-pn-tests'")
-                    {
-                        firstRunNotDone = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
-        }
-
-        private void ClearFile()
+        foreach (var modelName in modelNames)
         {
-            path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
-            path = Path.GetDirectoryName(path)?.Replace(@"file:\", "");
-
-            var picturePath = path + @"\output\dataFolder\picture\Deleted";
-
-            var diPic = new DirectoryInfo(picturePath);
-
             try
             {
-                foreach (var file in diPic.GetFiles())
+                if (firstRunNotDone)
                 {
-                    file.Delete();
+                    DbContext.Database.ExecuteSqlRaw(
+                        $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `items-planning-pn-tests`.`{modelName}`");
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // ignored
+                if (ex.Message == "Unknown database 'items-planning-pn-tests'")
+                {
+                    firstRunNotDone = false;
+                }
+                else
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
+    }
 
-        protected virtual void DoSetup()
+    private void ClearFile()
+    {
+        path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+        path = Path.GetDirectoryName(path)?.Replace(@"file:\", "");
+
+        var picturePath = path + @"\output\dataFolder\picture\Deleted";
+
+        var diPic = new DirectoryInfo(picturePath);
+
+        try
         {
+            foreach (var file in diPic.GetFiles())
+            {
+                file.Delete();
+            }
         }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    protected virtual void DoSetup()
+    {
     }
 }

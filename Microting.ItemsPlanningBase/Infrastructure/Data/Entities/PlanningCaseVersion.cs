@@ -22,60 +22,59 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities
+namespace Microting.ItemsPlanningBase.Infrastructure.Data.Entities;
+
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+
+public class PlanningCaseVersion : BaseEntity
 {
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
+    public int MicrotingSdkSiteId { get; set; }
+        
+    public int MicrotingSdkeFormId { get; set; }
+        
+    public int Status { get; set; }
+        
+    public string FieldStatus { get; set; }
+        
+    public int MicrotingSdkCaseId { get; set; }
+        
+    public DateTime? MicrotingSdkCaseDoneAt { get; set; }
+        
+    public int NumberOfImages { get; set; }
+        
+    public string Comment { get; set; }
+        
+    public string Location { get; set; }
 
-    public class PlanningCaseVersion : BaseEntity
-    {
-        public int MicrotingSdkSiteId { get; set; }
-        
-        public int MicrotingSdkeFormId { get; set; }
-        
-        public int Status { get; set; }
-        
-        public string FieldStatus { get; set; }
-        
-        public int MicrotingSdkCaseId { get; set; }
-        
-        public DateTime? MicrotingSdkCaseDoneAt { get; set; }
-        
-        public int NumberOfImages { get; set; }
-        
-        public string Comment { get; set; }
-        
-        public string Location { get; set; }
+    [ForeignKey("PlanningCase")]
+    public int PlanningCaseId { get; set; }
 
-        [ForeignKey("PlanningCase")]
-        public int PlanningCaseId { get; set; }
+    [ForeignKey("Planning")]
+    public int PlanningId { get; set; }
 
-        [ForeignKey("Planning")]
-        public int PlanningId { get; set; }
-
-        public string SdkFieldValue1 { get; set; }
+    public string SdkFieldValue1 { get; set; }
         
-        public string SdkFieldValue2 { get; set; }
+    public string SdkFieldValue2 { get; set; }
         
-        public string SdkFieldValue3 { get; set; }
+    public string SdkFieldValue3 { get; set; }
         
-        public string SdkFieldValue4 { get; set; }
+    public string SdkFieldValue4 { get; set; }
         
-        public string SdkFieldValue5 { get; set; }
+    public string SdkFieldValue5 { get; set; }
         
-        public string SdkFieldValue6 { get; set; }
+    public string SdkFieldValue6 { get; set; }
         
-        public string SdkFieldValue7 { get; set; }
+    public string SdkFieldValue7 { get; set; }
         
-        public string SdkFieldValue8 { get; set; }
+    public string SdkFieldValue8 { get; set; }
         
-        public string SdkFieldValue9 { get; set; }
+    public string SdkFieldValue9 { get; set; }
         
-        public string SdkFieldValue10 { get; set; }
+    public string SdkFieldValue10 { get; set; }
         
-        public int DoneByUserId { get; set; }
+    public int DoneByUserId { get; set; }
         
-        public string DoneByUserName { get; set; }
-    }
+    public string DoneByUserName { get; set; }
 }
