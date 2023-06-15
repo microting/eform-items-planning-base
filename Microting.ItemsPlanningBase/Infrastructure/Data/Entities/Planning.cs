@@ -108,6 +108,10 @@ public class Planning : PnBase
 
     public bool IsHidden { get; set; }
 
+    public bool ShowExpireDate { get; set; }
+
+    public int ExpireInYears { get; set; }
+
     public virtual List<PlanningSite> PlanningSites { get; set; } = new();
 
     public virtual List<PlanningsTags> PlanningsTags { get; set; } = new();

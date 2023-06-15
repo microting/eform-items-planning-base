@@ -109,4 +109,8 @@ public class PlanningVersion : BaseEntity
     public bool IsEditable { get; set; }
 
     public bool IsHidden { get; set; }
+
+    public bool ShowExpireDate { get; set; }
+
+    public int ExpireInYears { get; set; }
 }
