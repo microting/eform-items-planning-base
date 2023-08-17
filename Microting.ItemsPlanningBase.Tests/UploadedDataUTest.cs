@@ -27,11 +27,7 @@ public class UploadedDataUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };
@@ -96,11 +92,7 @@ public class UploadedDataUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };
@@ -179,11 +171,7 @@ public class UploadedDataUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };

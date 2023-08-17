@@ -68,11 +68,6 @@ public class ItemsPlanningPnDbContext: DbContext, IPluginDbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Language)
-            .WithMany()
-            .HasForeignKey(x => x.LanguageId)
-            .OnDelete(DeleteBehavior.Restrict);
-
         modelBuilder.Entity<PlanningNameTranslation>().HasOne(x => x.Planning)
             .WithMany(x => x.NameTranslations)
             .HasForeignKey(x => x.PlanningId)
@@ -82,11 +77,5 @@ public class ItemsPlanningPnDbContext: DbContext, IPluginDbContext
             .WithMany(x => x.PlanningCases)
             .HasForeignKey(x => x.PlanningId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        //modelBuilder.Entity<PluginGroupPermissionVersion>()
-        //    .HasOne<PluginGroupPermission>(x => x.PluginGroupPermissionId)
-        //    .WithMany()
-        //    .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
-        //    .OnDelete(DeleteBehavior.Restrict);
     }
 }

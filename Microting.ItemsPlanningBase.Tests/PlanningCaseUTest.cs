@@ -49,11 +49,7 @@ public class PlanningCaseUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };
@@ -113,11 +109,7 @@ public class PlanningCaseUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };
@@ -188,11 +180,7 @@ public class PlanningCaseUTest : DbTestFixture
             new()
             {
                 Name = Guid.NewGuid().ToString(),
-                Language = new Language()
-                {
-                    Name = "Danish",
-                    LanguageCode = "da"
-                },
+                LanguageId = 1,
                 Planning = planning
             }
         };
