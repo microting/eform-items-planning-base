@@ -114,5 +114,5 @@ public class PlanningVersion : BaseEntity
 
     public int ExpireInYears { get; set; }
 
-    public int ReportGroupPlanningTagId { get; set; }
+    public int? ReportGroupPlanningTagId { get; set; }
 }

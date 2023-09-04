@@ -65,7 +65,7 @@ public class PlanningCaseUTest : DbTestFixture
             MicrotingSdkCaseId = 34,
             MicrotingSdkeFormId = 234,
             Status = 66,
-            PlanningId = planning.Id,
+            PlanningId = planning.Id
         };
 
         // Act
@@ -124,7 +124,7 @@ public class PlanningCaseUTest : DbTestFixture
             MicrotingSdkCaseId = 34,
             MicrotingSdkeFormId = 234,
             Status = 66,
-            PlanningId = planning.Id,
+            PlanningId = planning.Id
         };
 
         await planningCase.Create(DbContext);
@@ -175,7 +175,7 @@ public class PlanningCaseUTest : DbTestFixture
 
         await planning.Create(DbContext);
 
-        var commonTranslationModels = new List<PlanningNameTranslation>()
+        var commonTranslationModels = new List<PlanningNameTranslation>
         {
             new()
             {
@@ -195,7 +195,7 @@ public class PlanningCaseUTest : DbTestFixture
             MicrotingSdkCaseId = 34,
             MicrotingSdkeFormId = 234,
             Status = 66,
-            PlanningId = planning.Id,
+            PlanningId = planning.Id
         };
 
         await planningCase.Create(DbContext);
