@@ -58,7 +58,7 @@ public class PlanningUTest : DbTestFixture
             Version = 1,
             WorkflowState = Constants.WorkflowStates.Created,
             LocationCode = "2",
-            PlanningNumber = "1",
+            PlanningNumber = "1"
         };
 
         // Act
@@ -153,7 +153,7 @@ public class PlanningUTest : DbTestFixture
             Version = 1,
             WorkflowState = Constants.WorkflowStates.Created,
             PlanningNumber = "1",
-            LocationCode = "2",
+            LocationCode = "2"
 
         };
         await planning.Create(DbContext);
@@ -251,7 +251,7 @@ public class PlanningUTest : DbTestFixture
             WorkflowState = Constants.WorkflowStates.Created,
             DayOfWeek = DayOfWeek.Friday,
             PlanningNumber = "1",
-            LocationCode = "2",
+            LocationCode = "2"
         };
         await planning.Create(DbContext);
 

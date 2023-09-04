@@ -14,15 +14,13 @@ namespace Microting.ItemsPlanningBase.Migrations
                 name: "ReportGroupPlanningTagId",
                 table: "PlanningVersions",
                 type: "int",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "ReportGroupPlanningTagId",
                 table: "Plannings",
                 type: "int",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
         }
 
         /// <inheritdoc />
