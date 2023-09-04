@@ -117,4 +117,6 @@ public class Planning : PnBase
     public virtual List<PlanningsTags> PlanningsTags { get; set; } = new();
 
     public virtual List<PlanningCase> PlanningCases { get; set; } = new();
+
+    public int ReportGroupPlanningTagId { get; set; }
 }
