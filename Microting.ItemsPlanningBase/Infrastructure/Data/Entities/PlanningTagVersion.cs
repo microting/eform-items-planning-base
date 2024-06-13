@@ -9,4 +9,6 @@ public class PlanningTagVersion : BaseEntity
 
     [ForeignKey("PlanningTag")]
     public int PlanningTagId { get; set; }
+
+    public bool IsLocked { get; set; }
 }

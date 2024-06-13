@@ -26,4 +26,6 @@ public class PlanningTag : PnBase
     [Required]
     [StringLength(250)]
     public string Name { get; set; }
+
+    public bool IsLocked { get; set; }
 }
