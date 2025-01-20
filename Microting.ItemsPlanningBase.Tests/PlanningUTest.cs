@@ -95,42 +95,42 @@ public class PlanningUTest : DbTestFixture
             .ToList();
 
         // Assert
-        Assert.AreEqual(1, planningLists.Count);
-        Assert.AreEqual(1, planningVersionsList.Count);
-        Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsList[0].Name);
-        Assert.AreEqual(planning.CreatedByUserId, planningLists[0].CreatedByUserId);
-        Assert.AreEqual(planning.UpdatedByUserId, planningLists[0].UpdatedByUserId);
-        Assert.AreEqual(planning.Description, planningLists[0].Description);
-        Assert.AreEqual(planning.Enabled, planningLists[0].Enabled);
-        Assert.AreEqual(planning.RepeatType, planningLists[0].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, planningLists[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, planningLists[0].RelatedEFormName);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningLists[0].WorkflowState);
-        Assert.AreEqual(planning.RepeatUntil, planningLists[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, planningLists[0].DayOfWeek);
-        Assert.AreEqual(planning.RepeatEvery, planningLists[0].RepeatEvery);
-        Assert.AreEqual(planning.DayOfMonth, planningLists[0].DayOfMonth);
-        Assert.AreEqual(planning.Id, planningLists[0].Id);
-        Assert.AreEqual(planning.PlanningNumber, planningLists[0].PlanningNumber);
-        Assert.AreEqual(planning.LocationCode, planningLists[0].LocationCode);
-        Assert.AreEqual(1, planningLists[0].Version);
+        Assert.That(planningLists.Count, Is.EqualTo(1));
+        Assert.That(planningVersionsList.Count, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsList[0].Name, Is.EqualTo(planingNameTranslations[0].Name));
+        Assert.That(planningLists[0].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(planningLists[0].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(planningLists[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(planningLists[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(planningLists[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(planningLists[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(planningLists[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(planningLists[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningLists[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(planningLists[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(planningLists[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(planningLists[0].DayOfMonth, Is.EqualTo(planning.DayOfMonth));
+        Assert.That(planningLists[0].Id, Is.EqualTo(planning.Id));
+        Assert.That(planningLists[0].PlanningNumber, Is.EqualTo(planning.PlanningNumber));
+        Assert.That(planningLists[0].LocationCode, Is.EqualTo(planning.LocationCode));
+        Assert.That(planningLists[0].Version, Is.EqualTo(1));
 
         // versions
-        Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[0].Name);
-        Assert.AreEqual(planning.Description, planningVersionsList[0].Description);
-        Assert.AreEqual(planning.Enabled, planningVersionsList[0].Enabled);
-        Assert.AreEqual(planning.RepeatType, planningVersionsList[0].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, planningVersionsList[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, planningVersionsList[0].RelatedEFormName);
-        Assert.AreEqual(planning.Id, planningVersionsList[0].PlanningId);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningVersionsList[0].WorkflowState);
-        Assert.AreEqual(planning.RepeatUntil, planningVersionsList[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, planningVersionsList[0].DayOfWeek);
-        Assert.AreEqual(planning.DayOfMonth, planningVersionsList[0].DayOfMonth);
-        Assert.AreEqual(planning.RepeatEvery, planningVersionsList[0].RepeatEvery);
-        Assert.AreEqual(planning.PlanningNumber, planningVersionsList[0].PlanningNumber);
-        Assert.AreEqual(planning.LocationCode, planningVersionsList[0].LocationCode);
-        Assert.AreEqual(1, planningVersionsList[0].Version);
+        Assert.That(planingNameTranslationsListVersions[0].Name, Is.EqualTo(planingNameTranslations[0].Name));
+        Assert.That(planningVersionsList[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(planningVersionsList[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(planningVersionsList[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(planningVersionsList[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(planningVersionsList[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(planningVersionsList[0].PlanningId, Is.EqualTo(planning.Id));
+        Assert.That(planningVersionsList[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningVersionsList[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(planningVersionsList[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(planningVersionsList[0].DayOfMonth, Is.EqualTo(planning.DayOfMonth));
+        Assert.That(planningVersionsList[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(planningVersionsList[0].PlanningNumber, Is.EqualTo(planning.PlanningNumber));
+        Assert.That(planningVersionsList[0].LocationCode, Is.EqualTo(planning.LocationCode));
+        Assert.That(planningVersionsList[0].Version, Is.EqualTo(1));
     }
 
     [Test]
@@ -192,44 +192,44 @@ public class PlanningUTest : DbTestFixture
             .ToList();
 
         // Assert
-        Assert.AreEqual(1, plannings.Count);
-        Assert.AreEqual(1, planningVersions.Count);
-        Assert.AreEqual(1, planingNameTranslationsList.Count);
-        Assert.AreEqual(2, planingNameTranslationsListVersions.Count);
-        Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsList[0].Name);
-        Assert.AreEqual(planning.Description, plannings[0].Description);
-        Assert.AreEqual(planning.Enabled, plannings[0].Enabled);
-        Assert.AreEqual(planning.UpdatedByUserId, plannings[0].UpdatedByUserId);
-        Assert.AreEqual(planning.CreatedByUserId, plannings[0].CreatedByUserId);
-        Assert.AreEqual(planning.RepeatUntil, plannings[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, plannings[0].DayOfWeek);
-        Assert.AreEqual(planning.RepeatEvery, plannings[0].RepeatEvery);
-        Assert.AreEqual(planning.RepeatType, plannings[0].RepeatType);
-        Assert.AreEqual(planning.DayOfMonth, plannings[0].DayOfMonth);
-        Assert.AreEqual(planning.RelatedEFormId, plannings[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, plannings[0].RelatedEFormName);
-        Assert.AreEqual(planning.LocationCode, plannings[0].LocationCode);
-        Assert.AreEqual(planning.PlanningNumber, plannings[0].PlanningNumber);
-        Assert.AreEqual(Constants.WorkflowStates.Created, plannings[0].WorkflowState);
-        Assert.AreEqual(planning.Id, plannings[0].Id);
-        Assert.AreEqual(1, plannings[0].Version);
+        Assert.That(plannings.Count, Is.EqualTo(1));
+        Assert.That(planningVersions.Count, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsList.Count, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsListVersions.Count, Is.EqualTo(2));
+        Assert.That(planingNameTranslationsList[0].Name, Is.EqualTo(planingNameTranslations[0].Name));
+        Assert.That(plannings[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(plannings[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(plannings[0].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(plannings[0].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(plannings[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(plannings[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(plannings[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(plannings[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(plannings[0].DayOfMonth, Is.EqualTo(planning.DayOfMonth));
+        Assert.That(plannings[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(plannings[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(plannings[0].LocationCode, Is.EqualTo(planning.LocationCode));
+        Assert.That(plannings[0].PlanningNumber, Is.EqualTo(planning.PlanningNumber));
+        Assert.That(plannings[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(plannings[0].Id, Is.EqualTo(planning.Id));
+        Assert.That(plannings[0].Version, Is.EqualTo(1));
 
         // Versions
-        Assert.AreEqual(oldName, planingNameTranslationsListVersions[0].Name);
-        Assert.AreEqual(planning.Description, planningVersions[0].Description);
-        Assert.AreEqual(planning.Enabled, planningVersions[0].Enabled);
-        Assert.AreEqual(planning.RepeatType, planningVersions[0].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, planningVersions[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, planningVersions[0].RelatedEFormName);
-        Assert.AreEqual(planning.UpdatedByUserId, planningVersions[0].UpdatedByUserId);
-        Assert.AreEqual(planning.CreatedByUserId, planningVersions[0].CreatedByUserId);
-        Assert.AreEqual(planning.RepeatUntil, planningVersions[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, planningVersions[0].DayOfWeek);
-        Assert.AreEqual(planning.RepeatEvery, planningVersions[0].RepeatEvery);
-        Assert.AreEqual(planning.Id, planningVersions[0].PlanningId);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningVersions[0].WorkflowState);
-        Assert.AreEqual(1, planningVersions[0].Version);
-        Assert.AreEqual("hello", planingNameTranslationsListVersions[1].Name);
+        Assert.That(planingNameTranslationsListVersions[0].Name, Is.EqualTo(oldName));
+        Assert.That(planningVersions[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(planningVersions[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(planningVersions[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(planningVersions[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(planningVersions[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(planningVersions[0].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(planningVersions[0].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(planningVersions[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(planningVersions[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(planningVersions[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(planningVersions[0].PlanningId, Is.EqualTo(planning.Id));
+        Assert.That(planningVersions[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningVersions[0].Version, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsListVersions[1].Name, Is.EqualTo("hello"));
     }
 
     [Test]
@@ -272,7 +272,7 @@ public class PlanningUTest : DbTestFixture
         // Act
         // planning = await DbContext.Plannings.AsNoTracking().FirstOrDefaultAsync();
 
-        Assert.AreEqual(Constants.WorkflowStates.Created, planning.WorkflowState);
+        Assert.That(planning.WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
 
         await planning.Delete(DbContext);
         await planingNameTranslations[0].Delete(DbContext);
@@ -288,57 +288,57 @@ public class PlanningUTest : DbTestFixture
             .ToList();
 
         // Assert
-        Assert.AreEqual(1, plannings.Count);
-        Assert.AreEqual(2, planningVersions.Count);
-        Assert.AreEqual(1, planingNameTranslationsList.Count);
-        Assert.AreEqual(2, planingNameTranslationsListVersions.Count);
-        Assert.AreEqual(planingNameTranslationsList[0].Name, planingNameTranslations[0].Name);
-        Assert.AreEqual(planning.Description, plannings[0].Description);
-        Assert.AreEqual(planning.Enabled, plannings[0].Enabled);
-        Assert.AreEqual(planning.RepeatType, plannings[0].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, plannings[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, plannings[0].RelatedEFormName);
-        Assert.AreEqual(planning.UpdatedByUserId, plannings[0].UpdatedByUserId);
-        Assert.AreEqual(planning.CreatedByUserId, plannings[0].CreatedByUserId);
-        Assert.AreEqual(planning.RepeatEvery, plannings[0].RepeatEvery);
-        Assert.AreEqual(planning.RepeatUntil, plannings[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, plannings[0].DayOfWeek);
-        Assert.AreEqual(planning.DayOfMonth, plannings[0].DayOfMonth);
-        Assert.AreEqual(Constants.WorkflowStates.Removed, plannings[0].WorkflowState);
-        Assert.AreEqual(planning.Id, plannings[0].Id);
-        Assert.AreEqual(planning.LocationCode, plannings[0].LocationCode);
-        Assert.AreEqual(planning.PlanningNumber, plannings[0].PlanningNumber);
-        Assert.AreEqual(2, plannings[0].Version);
+        Assert.That(plannings.Count, Is.EqualTo(1));
+        Assert.That(planningVersions.Count, Is.EqualTo(2));
+        Assert.That(planingNameTranslationsList.Count, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsListVersions.Count, Is.EqualTo(2));
+        Assert.That(planingNameTranslations[0].Name, Is.EqualTo(planingNameTranslationsList[0].Name));
+        Assert.That(plannings[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(plannings[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(plannings[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(plannings[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(plannings[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(plannings[0].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(plannings[0].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(plannings[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(plannings[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(plannings[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(plannings[0].DayOfMonth, Is.EqualTo(planning.DayOfMonth));
+        Assert.That(plannings[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Removed));
+        Assert.That(plannings[0].Id, Is.EqualTo(planning.Id));
+        Assert.That(plannings[0].LocationCode, Is.EqualTo(planning.LocationCode));
+        Assert.That(plannings[0].PlanningNumber, Is.EqualTo(planning.PlanningNumber));
+        Assert.That(plannings[0].Version, Is.EqualTo(2));
 
         // Versions
-        Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[0].Name);
-        Assert.AreEqual(planning.Description, planningVersions[0].Description);
-        Assert.AreEqual(planning.Enabled, planningVersions[0].Enabled);
-        Assert.AreEqual(planning.RepeatType, planningVersions[0].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, planningVersions[0].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, planningVersions[0].RelatedEFormName);
-        Assert.AreEqual(planning.UpdatedByUserId, planningVersions[0].UpdatedByUserId);
-        Assert.AreEqual(planning.CreatedByUserId, planningVersions[0].CreatedByUserId);
-        Assert.AreEqual(planning.RepeatEvery, planningVersions[0].RepeatEvery);
-        Assert.AreEqual(planning.RepeatUntil, planningVersions[0].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, planningVersions[0].DayOfWeek);
-        Assert.AreEqual(planning.DayOfMonth, planningVersions[0].DayOfMonth);
-        Assert.AreEqual(planning.Id, planningVersions[0].PlanningId);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningVersions[0].WorkflowState);
-        Assert.AreEqual(1, planningVersions[0].Version);
-        Assert.AreEqual(planingNameTranslations[0].Name, planingNameTranslationsListVersions[1].Name);
-        Assert.AreEqual(planning.Description, planningVersions[1].Description);
-        Assert.AreEqual(planning.Enabled, planningVersions[1].Enabled);
-        Assert.AreEqual(planning.RepeatType, planningVersions[1].RepeatType);
-        Assert.AreEqual(planning.RelatedEFormId, planningVersions[1].RelatedEFormId);
-        Assert.AreEqual(planning.RelatedEFormName, planningVersions[1].RelatedEFormName);
-        Assert.AreEqual(planning.UpdatedByUserId, planningVersions[1].UpdatedByUserId);
-        Assert.AreEqual(planning.CreatedByUserId, planningVersions[1].CreatedByUserId);
-        Assert.AreEqual(planning.RepeatEvery, planningVersions[1].RepeatEvery);
-        Assert.AreEqual(planning.RepeatUntil, planningVersions[1].RepeatUntil);
-        Assert.AreEqual(planning.DayOfWeek, planningVersions[1].DayOfWeek);
-        Assert.AreEqual(planning.Id, planningVersions[1].PlanningId);
-        Assert.AreEqual(Constants.WorkflowStates.Removed, planningVersions[1].WorkflowState);
-        Assert.AreEqual(2, planningVersions[1].Version);
+        Assert.That(planingNameTranslationsListVersions[0].Name, Is.EqualTo(planingNameTranslations[0].Name));
+        Assert.That(planningVersions[0].Description, Is.EqualTo(planning.Description));
+        Assert.That(planningVersions[0].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(planningVersions[0].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(planningVersions[0].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(planningVersions[0].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(planningVersions[0].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(planningVersions[0].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(planningVersions[0].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(planningVersions[0].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(planningVersions[0].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(planningVersions[0].DayOfMonth, Is.EqualTo(planning.DayOfMonth));
+        Assert.That(planningVersions[0].PlanningId, Is.EqualTo(planning.Id));
+        Assert.That(planningVersions[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningVersions[0].Version, Is.EqualTo(1));
+        Assert.That(planingNameTranslationsListVersions[1].Name, Is.EqualTo(planingNameTranslations[0].Name));
+        Assert.That(planningVersions[1].Description, Is.EqualTo(planning.Description));
+        Assert.That(planningVersions[1].Enabled, Is.EqualTo(planning.Enabled));
+        Assert.That(planningVersions[1].RepeatType, Is.EqualTo(planning.RepeatType));
+        Assert.That(planningVersions[1].RelatedEFormId, Is.EqualTo(planning.RelatedEFormId));
+        Assert.That(planningVersions[1].RelatedEFormName, Is.EqualTo(planning.RelatedEFormName));
+        Assert.That(planningVersions[1].UpdatedByUserId, Is.EqualTo(planning.UpdatedByUserId));
+        Assert.That(planningVersions[1].CreatedByUserId, Is.EqualTo(planning.CreatedByUserId));
+        Assert.That(planningVersions[1].RepeatEvery, Is.EqualTo(planning.RepeatEvery));
+        Assert.That(planningVersions[1].RepeatUntil, Is.EqualTo(planning.RepeatUntil));
+        Assert.That(planningVersions[1].DayOfWeek, Is.EqualTo(planning.DayOfWeek));
+        Assert.That(planningVersions[1].PlanningId, Is.EqualTo(planning.Id));
+        Assert.That(planningVersions[1].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Removed));
+        Assert.That(planningVersions[1].Version, Is.EqualTo(2));
     }
 }

@@ -75,25 +75,25 @@ public class PlanningCaseUTest : DbTestFixture
         var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
 
         // Assert
-        Assert.AreEqual(1, planningCases.Count);
-        Assert.AreEqual(1, planningCaseVersions.Count);
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-        Assert.AreEqual(planningCase.Status, planningCases[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-        Assert.AreEqual(1, planningCases[0].Version);
+        Assert.That(planningCases.Count, Is.EqualTo(1));
+        Assert.That(planningCaseVersions.Count, Is.EqualTo(1));
+        Assert.That(planningCases[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCases[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCases[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCases[0].Status, Is.EqualTo(planningCase.Status));
+        Assert.That(planningCases[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCases[0].Id, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCases[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCases[0].Version, Is.EqualTo(1));
 
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-        Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-        Assert.AreEqual(1, planningCaseVersions[0].Version);
+        Assert.That(planningCaseVersions[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCaseVersions[0].Status, Is.EqualTo(planningCase.Status));
+        Assert.That(planningCaseVersions[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCaseVersions[0].PlanningCaseId, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCaseVersions[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCaseVersions[0].Version, Is.EqualTo(1));
     }
 
     [Test]
@@ -138,33 +138,33 @@ public class PlanningCaseUTest : DbTestFixture
         var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
 
         // Assert
-        Assert.AreEqual(1, planningCases.Count);
-        Assert.AreEqual(2, planningCaseVersions.Count);
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-        Assert.AreEqual(77, planningCases[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCases[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-        Assert.AreEqual(2, planningCases[0].Version);
+        Assert.That(planningCases.Count, Is.EqualTo(1));
+        Assert.That(planningCaseVersions.Count, Is.EqualTo(2));
+        Assert.That(planningCases[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCases[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCases[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCases[0].Status, Is.EqualTo(77));
+        Assert.That(planningCases[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCases[0].Id, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCases[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCases[0].Version, Is.EqualTo(2));
 
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-        Assert.AreEqual(66, planningCaseVersions[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-        Assert.AreEqual(1, planningCaseVersions[0].Version);
+        Assert.That(planningCaseVersions[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCaseVersions[0].Status, Is.EqualTo(66));
+        Assert.That(planningCaseVersions[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCaseVersions[0].PlanningCaseId, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCaseVersions[0].Version, Is.EqualTo(1));
 
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
-        Assert.AreEqual(77, planningCaseVersions[1].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[1].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
-        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-        Assert.AreEqual(2, planningCaseVersions[1].Version);
+        Assert.That(planningCaseVersions[1].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCaseVersions[1].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCaseVersions[1].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCaseVersions[1].Status, Is.EqualTo(77));
+        Assert.That(planningCaseVersions[1].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCaseVersions[1].PlanningCaseId, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCaseVersions[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCaseVersions[1].Version, Is.EqualTo(2));
     }
 
     [Test]
@@ -208,33 +208,33 @@ public class PlanningCaseUTest : DbTestFixture
         var planningCaseVersions = DbContext.PlanningCaseVersions.AsNoTracking().ToList();
 
         // Assert
-        Assert.AreEqual(1, planningCases.Count);
-        Assert.AreEqual(2, planningCaseVersions.Count);
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCases[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCases[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCases[0].MicrotingSdkeFormId);
-        Assert.AreEqual(planningCase.PlanningId, planningCases[0].PlanningId);
-        Assert.AreEqual(planningCase.Status, planningCases[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Removed, planningCases[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCases[0].Id);
-        Assert.AreEqual(2, planningCases[0].Version);
+        Assert.That(planningCases.Count, Is.EqualTo(1));
+        Assert.That(planningCaseVersions.Count, Is.EqualTo(2));
+        Assert.That(planningCases[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCases[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCases[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCases[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCases[0].Status, Is.EqualTo(planningCase.Status));
+        Assert.That(planningCases[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Removed));
+        Assert.That(planningCases[0].Id, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCases[0].Version, Is.EqualTo(2));
 
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[0].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[0].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[0].MicrotingSdkeFormId);
-        Assert.AreEqual(planningCase.Status, planningCaseVersions[0].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Created, planningCaseVersions[0].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCaseVersions[0].PlanningCaseId);
-        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[0].PlanningId);
-        Assert.AreEqual(1, planningCaseVersions[0].Version);
+        Assert.That(planningCaseVersions[0].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCaseVersions[0].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCaseVersions[0].Status, Is.EqualTo(planningCase.Status));
+        Assert.That(planningCaseVersions[0].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Created));
+        Assert.That(planningCaseVersions[0].PlanningCaseId, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCaseVersions[0].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCaseVersions[0].Version, Is.EqualTo(1));
 
-        Assert.AreEqual(planningCase.MicrotingSdkSiteId, planningCaseVersions[1].MicrotingSdkSiteId);
-        Assert.AreEqual(planningCase.MicrotingSdkCaseId, planningCaseVersions[1].MicrotingSdkCaseId);
-        Assert.AreEqual(planningCase.MicrotingSdkeFormId, planningCaseVersions[1].MicrotingSdkeFormId);
-        Assert.AreEqual(planningCase.PlanningId, planningCaseVersions[1].PlanningId);
-        Assert.AreEqual(planningCase.Status, planningCaseVersions[1].Status);
-        Assert.AreEqual(Constants.WorkflowStates.Removed, planningCaseVersions[1].WorkflowState);
-        Assert.AreEqual(planningCase.Id, planningCaseVersions[1].PlanningCaseId);
-        Assert.AreEqual(2, planningCaseVersions[1].Version);
+        Assert.That(planningCaseVersions[1].MicrotingSdkSiteId, Is.EqualTo(planningCase.MicrotingSdkSiteId));
+        Assert.That(planningCaseVersions[1].MicrotingSdkCaseId, Is.EqualTo(planningCase.MicrotingSdkCaseId));
+        Assert.That(planningCaseVersions[1].MicrotingSdkeFormId, Is.EqualTo(planningCase.MicrotingSdkeFormId));
+        Assert.That(planningCaseVersions[1].PlanningId, Is.EqualTo(planningCase.PlanningId));
+        Assert.That(planningCaseVersions[1].Status, Is.EqualTo(planningCase.Status));
+        Assert.That(planningCaseVersions[1].WorkflowState, Is.EqualTo(Constants.WorkflowStates.Removed));
+        Assert.That(planningCaseVersions[1].PlanningCaseId, Is.EqualTo(planningCase.Id));
+        Assert.That(planningCaseVersions[1].Version, Is.EqualTo(2));
     }
 }

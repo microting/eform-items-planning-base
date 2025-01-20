@@ -65,18 +65,18 @@ public class UploadedDataUTest : DbTestFixture
         var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
         var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
         //Assert
-        Assert.NotNull(dbUploadedData);
+        Assert.That(dbUploadedData, Is.Not.Null);
 
-        Assert.AreEqual(1, uploadedDataList.Count);
-        Assert.AreEqual(1, uploadedDataVersionList.Count);
+        Assert.That(uploadedDataList.Count, Is.EqualTo(1));
+        Assert.That(uploadedDataVersionList.Count, Is.EqualTo(1));
 
-        Assert.AreEqual(uploadedData.Checksum, dbUploadedData.Checksum);
-        Assert.AreEqual(uploadedData.Extension, dbUploadedData.Extension);
-        Assert.AreEqual(uploadedData.CurrentFile, dbUploadedData.CurrentFile);
-        Assert.AreEqual(uploadedData.UploaderType, dbUploadedData.UploaderType);
-        Assert.AreEqual(uploadedData.FileLocation, dbUploadedData.FileLocation);
-        Assert.AreEqual(uploadedData.FileName, dbUploadedData.FileName);
-        Assert.AreEqual(uploadedData.PlanningCaseId, dbUploadedData.PlanningCaseId);
+        Assert.That(dbUploadedData.Checksum, Is.EqualTo(uploadedData.Checksum));
+        Assert.That(dbUploadedData.Extension, Is.EqualTo(uploadedData.Extension));
+        Assert.That(dbUploadedData.CurrentFile, Is.EqualTo(uploadedData.CurrentFile));
+        Assert.That(dbUploadedData.UploaderType, Is.EqualTo(uploadedData.UploaderType));
+        Assert.That(dbUploadedData.FileLocation, Is.EqualTo(uploadedData.FileLocation));
+        Assert.That(dbUploadedData.FileName, Is.EqualTo(uploadedData.FileName));
+        Assert.That(dbUploadedData.PlanningCaseId, Is.EqualTo(uploadedData.PlanningCaseId));
     }
 
     [Test]
@@ -144,18 +144,18 @@ public class UploadedDataUTest : DbTestFixture
         var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
         var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
         //Assert
-        Assert.NotNull(dbUploadedData);
+        Assert.That(dbUploadedData, Is.Not.Null);
 
-        Assert.AreEqual(1, uploadedDataList.Count);
-        Assert.AreEqual(2, uploadedDataVersionList.Count);
+        Assert.That(uploadedDataList.Count, Is.EqualTo(1));
+        Assert.That(uploadedDataVersionList.Count, Is.EqualTo(2));
 
-        Assert.AreEqual(newCheckSum, dbUploadedData.Checksum);
-        Assert.AreEqual(newExtension, dbUploadedData.Extension);
-        Assert.AreEqual(newCurrentFile, dbUploadedData.CurrentFile);
-        Assert.AreEqual(newUploaderType, dbUploadedData.UploaderType);
-        Assert.AreEqual(newFileLocation, dbUploadedData.FileLocation);
-        Assert.AreEqual(newFileName, dbUploadedData.FileName);
-        Assert.AreEqual(uploadedData.PlanningCaseId, dbUploadedData.PlanningCaseId);
+        Assert.That(dbUploadedData.Checksum, Is.EqualTo(newCheckSum));
+        Assert.That(dbUploadedData.Extension, Is.EqualTo(newExtension));
+        Assert.That(dbUploadedData.CurrentFile, Is.EqualTo(newCurrentFile));
+        Assert.That(dbUploadedData.UploaderType, Is.EqualTo(newUploaderType));
+        Assert.That(dbUploadedData.FileLocation, Is.EqualTo(newFileLocation));
+        Assert.That(dbUploadedData.FileName, Is.EqualTo(newFileName));
+        Assert.That(dbUploadedData.PlanningCaseId, Is.EqualTo(uploadedData.PlanningCaseId));
     }
 
     [Test]
@@ -210,19 +210,19 @@ public class UploadedDataUTest : DbTestFixture
         var uploadedDataList = DbContext.UploadedDatas.AsNoTracking().ToList();
         var uploadedDataVersionList = DbContext.UploadedDataVersions.AsNoTracking().ToList();
         //Assert
-        Assert.NotNull(dbUploadedData);
+        Assert.That(dbUploadedData, Is.Not.Null);
 
-        Assert.AreEqual(1, uploadedDataList.Count);
-        Assert.AreEqual(2, uploadedDataVersionList.Count);
+        Assert.That(uploadedDataList.Count, Is.EqualTo(1));
+        Assert.That(uploadedDataVersionList.Count, Is.EqualTo(2));
 
-        Assert.AreEqual(uploadedData.Checksum, dbUploadedData.Checksum);
-        Assert.AreEqual(uploadedData.Extension, dbUploadedData.Extension);
-        Assert.AreEqual(uploadedData.CurrentFile, dbUploadedData.CurrentFile);
-        Assert.AreEqual(uploadedData.UploaderType, dbUploadedData.UploaderType);
-        Assert.AreEqual(uploadedData.FileLocation, dbUploadedData.FileLocation);
-        Assert.AreEqual(uploadedData.FileName, dbUploadedData.FileName);
-        Assert.AreEqual(uploadedData.PlanningCaseId, dbUploadedData.PlanningCaseId);
-        Assert.AreEqual(Constants.WorkflowStates.Removed, dbUploadedData.WorkflowState);
+        Assert.That(dbUploadedData.Checksum, Is.EqualTo(uploadedData.Checksum));
+        Assert.That(dbUploadedData.Extension, Is.EqualTo(uploadedData.Extension));
+        Assert.That(dbUploadedData.CurrentFile, Is.EqualTo(uploadedData.CurrentFile));
+        Assert.That(dbUploadedData.UploaderType, Is.EqualTo(uploadedData.UploaderType));
+        Assert.That(dbUploadedData.FileLocation, Is.EqualTo(uploadedData.FileLocation));
+        Assert.That(dbUploadedData.FileName, Is.EqualTo(uploadedData.FileName));
+        Assert.That(dbUploadedData.PlanningCaseId, Is.EqualTo(uploadedData.PlanningCaseId));
+        Assert.That(dbUploadedData.WorkflowState, Is.EqualTo(Constants.WorkflowStates.Removed));
     }
 
 }
