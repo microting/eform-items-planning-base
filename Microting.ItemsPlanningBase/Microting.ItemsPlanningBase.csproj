@@ -11,7 +11,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microting.eForm" Version="10.0.7" />
-      <PackageReference Include="Microting.eFormApi.BasePn" Version="10.0.6" />
+      <PackageReference Include="Microting.eFormApi.BasePn" Version="10.0.7" />
     </ItemGroup>
 
     <ItemGroup>
