@@ -39,6 +39,10 @@ public class PlanningVersion : BaseEntity
 
     public DateTime? RepeatUntil { get; set; }
 
+    public int? RepeatEndMode { get; set; }
+
+    public int? RepeatOccurrences { get; set; }
+
     public DayOfWeek? DayOfWeek { get; set; }
 
     public int? DayOfMonth { get; set; }
