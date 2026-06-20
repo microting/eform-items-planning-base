@@ -48,6 +48,8 @@ public class Planning : PnBase
 
     public int? DayOfMonth { get; set; }
 
+    public int? RepeatOrdinalWeek { get; set; }
+
     public DateTime? LastExecutedTime { get; set; }
 
     public DateTime? NextExecutionTime { get; set; }
